@@ -1,62 +1,53 @@
-import React from 'react'
-import CommentShow from '../components/CommentShow'
-import {Comment, Form, Button} from 'semantic-ui-react'
+import React from 'react';
+import CommentShow from '../components/CommentShow';
+import CommentForm from '../components/CommentForm';
+import { Comment } from 'semantic-ui-react';
 
 class CommentContainer extends React.Component {
-  state = { comment: { username: '', content: '' } };
+	state = { comments: this.props.comments };
 
-  handleInputChange = e => {
-		this.setState({
-			comment: { ...this.state.comment, [e.target.name]: e.target.value }
-		});
-	};
-
-  handleCommentSubmit = e => {
-		e.preventDefault();
-		this.postComment();
-	};
-
-	postComment = () => {
+	postComment = newCommentInfo => {
 		let options = {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 				Accept: 'application/json'
 			},
-			body: JSON.stringify(this.state)
+			body: JSON.stringify(newCommentInfo)
 		};
-		fetch(`http://localhost:3000/stories/${this.props.storyId}/comments`, options)
+		fetch(
+			`http://localhost:3000/stories/${this.props.storyId}/comments`,
+			options
+		)
 			.then(res => res.json())
-			.then(json => console.log(json))
+			.then(json => this.addToState(json));
 	};
 
-  render() {
+	addToState = json => {
+		const newComment = {
+			id: json.id,
+			content: json.content,
+			created_at: json.created_at,
+			username: json.username
+		};
+		this.setState({
+			comments: [...this.state.comments, newComment]
+		});
+	};
 
-    const comments = this.props.comments.map(comment => {
-			return <CommentShow comment={comment} key={comment.id} />;
+	render() {
+		console.log(this.state.comments);
+		const commentShows = this.state.comments.map(c => {
+			return <CommentShow comment={c} key={c.id} />;
 		});
 
-    return(
-      <Comment.Group>
-        {comments}
-        <Form onSubmit={this.handleCommentSubmit}>
-          <Form.TextArea
-            name="content"
-            value={this.state.comment.content}
-            onChange={this.handleInputChange}
-          />
-          <Form.Field>
-            <input
-              onChange={this.handleInputChange}
-              name="username"
-              placeholder="Your Username"
-            />
-          </Form.Field>
-          <Button type="submit" content="Submit" />
-        </Form>
-      </Comment.Group>
-    )
-  }
+		return (
+			<Comment.Group>
+				{commentShows}
+				<CommentForm submitComment={this.postComment} />
+			</Comment.Group>
+		);
+	}
 }
 
-export default CommentContainer
+export default CommentContainer;
