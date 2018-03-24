@@ -58,7 +58,7 @@ export default class NewStoryForm extends Component {
 				<Form onSubmit={this.handleSubmit} id='storyForm'>
 					<Form.Field inline>
 						<label>Username</label>
-						<Input name='username' onBlur={this.checkUser} value={this.state.username} onChange={this.handleChange} />
+						<Input icon={this.state.user_id !== '' ? {name:'checkmark', color:'green'} : null} name='username' onBlur={this.checkUser} value={this.state.username} onChange={this.handleChange} />
 					</Form.Field>
 					<Form.Field>
 						<label>Story</label>

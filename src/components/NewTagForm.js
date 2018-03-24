@@ -27,7 +27,12 @@ class NewTagForm extends React.Component {
     return(
       <Form id='tagForm' onSubmit={this.onSubmit}>
         <label>Tags: </label>
-        <Input name='tag' value={this.state.value} onChange={this.handleChange}/>
+        <Input
+          icon='tags'
+          iconPosition='left'
+          name='tag'
+          value={this.state.value}
+          onChange={this.handleChange}/>
         <Button type='submit'>Submit</Button>
       </Form>
     )
