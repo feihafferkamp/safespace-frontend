@@ -52,7 +52,7 @@ export default class CommentContainer extends React.Component {
 				/>
 			</div>
 		) : (
-			<a href="#" onClick={this.toggleExpand}>
+			<a role="button" onClick={this.toggleExpand}>
 				<Icon name="comment" /> Comment
 			</a>
 		);

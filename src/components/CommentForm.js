@@ -34,7 +34,7 @@ export default class CommentForm extends Component {
 					/>
 				</Form.Field>
 				<Button type="submit" content="Submit" />
-				<a href="#" onClick={this.props.handleCollapose}>
+				<a role="button" onClick={this.props.handleCollapse}>
 					Collapse
 				</a>
 			</Form>
