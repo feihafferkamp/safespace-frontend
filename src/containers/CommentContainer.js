@@ -1,13 +1,13 @@
 import React from 'react';
-import CommentShow from '../components/CommentShow';
+import { Comment, Icon } from 'semantic-ui-react';
+import CommentCard from '../components/CommentCard';
 import CommentForm from '../components/CommentForm';
-import { Comment } from 'semantic-ui-react';
 
-class CommentContainer extends React.Component {
-	state = { comments: this.props.comments };
+export default class CommentContainer extends React.Component {
+	state = { comments: this.props.comments, expand: false };
 
 	postComment = newCommentInfo => {
-		let options = {
+		const options = {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -20,34 +20,44 @@ class CommentContainer extends React.Component {
 			options
 		)
 			.then(res => res.json())
-			.then(json => this.addToState(json));
+			.then(json => this.addNewCommentToState(json));
 	};
 
-	addToState = json => {
+	addNewCommentToState = json => {
 		const newComment = {
 			id: json.id,
 			content: json.content,
 			created_at: json.created_at,
 			username: json.username
 		};
-		this.setState({
-			comments: [...this.state.comments, newComment]
-		});
+		this.setState({ comments: [...this.state.comments, newComment] });
 	};
 
-	render() {
-		console.log(this.state.comments);
-		const commentShows = this.state.comments.map(c => {
-			return <CommentShow comment={c} key={c.id} />;
-		});
+	toggleExpand = () => {
+		this.setState({ expand: !this.state.expand });
+	};
 
-		return (
-			<Comment.Group>
-				{commentShows}
-				<CommentForm submitComment={this.postComment} />
-			</Comment.Group>
+	commentCards = () =>
+		this.state.comments.map(c => (
+			<CommentCard comment={c} key={c.id} handleShow={this.setShow} />
+		));
+
+	generateDisplay = () =>
+		this.state.expand ? (
+			<div>
+				<Comment>{this.commentCards()}</Comment>
+				<CommentForm
+					submitComment={this.postComment}
+					handleCollapse={this.toggleExpand}
+				/>
+			</div>
+		) : (
+			<a href="#" onClick={this.toggleExpand}>
+				<Icon name="comment" /> Comment
+			</a>
 		);
+
+	render() {
+		return <Comment.Group>{this.generateDisplay()}</Comment.Group>;
 	}
 }
-
-export default CommentContainer;

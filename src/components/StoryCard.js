@@ -14,11 +14,13 @@ export default class StoryCard extends Component {
 							{this.props.story.user.username}
 						</Card.Meta>
 					</Card.Content>
+					<Card.Content extra>
+						<CommentContainer
+							comments={this.props.story.comments}
+							storyId={this.props.story.id}
+						/>
+					</Card.Content>
 				</Card>
-				<CommentContainer
-					comments={this.props.story.comments}
-					storyId={this.props.story.id}
-				/>
 			</div>
 		);
 	}
