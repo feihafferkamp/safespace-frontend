@@ -4,7 +4,7 @@ import CommentCard from '../components/CommentCard';
 import CommentForm from '../components/CommentForm';
 
 export default class CommentContainer extends React.Component {
-	state = { comments: this.props.comments, expand: false };
+	state = { comments: this.props.comments, open: false };
 
 	postComment = newCommentInfo => {
 		const options = {
@@ -33,8 +33,13 @@ export default class CommentContainer extends React.Component {
 		this.setState({ comments: [...this.state.comments, newComment] });
 	};
 
-	toggleExpand = () => {
-		this.setState({ expand: !this.state.expand });
+	// addNewCommentToState = ({id, content, created_at, username}) => {
+	// 	const newComment = {id, content, created_at, username}
+	// 	this.setState({ comments: [...this.state.comments, newComment] });
+	// };
+
+	toggleOpen = () => {
+		this.setState({ open: !this.state.open });
 	};
 
 	commentCards = () =>
@@ -43,16 +48,16 @@ export default class CommentContainer extends React.Component {
 		));
 
 	generateDisplay = () =>
-		this.state.expand ? (
+		this.state.open ? (
 			<div>
 				<Comment>{this.commentCards()}</Comment>
 				<CommentForm
 					submitComment={this.postComment}
-					handleCollapse={this.toggleExpand}
+					handleClose={this.toggleOpen}
 				/>
 			</div>
 		) : (
-			<a role="button" onClick={this.toggleExpand}>
+			<a role="button" onClick={this.toggleOpen}>
 				<Icon name="comment" /> Comment
 			</a>
 		);

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import Welcome from '../components/Welcome';
 import Navbar from '../components/Navbar';
-import StoryContainer from './StoryContainer';
 import NewStoryContainer from './NewStoryContainer';
+import StoryContainer from './StoryContainer';
+import Welcome from '../components/Welcome';
 import { Route, Switch } from 'react-router-dom';
+
+// import StoryContainer from './StoryContainer';
 
 export default class Page extends Component {
 	render() {

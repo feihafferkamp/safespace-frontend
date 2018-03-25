@@ -1,14 +1,19 @@
-import React, { Component } from 'react';
-import StoryCard from './StoryCard';
-import { Card } from 'semantic-ui-react'
+import React from 'react';
+import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps';
+import StoryMarker from './StoryMarker';
 
-export default class StoryList extends Component {
-	render() {
-		const storyCards = this.props.stories.map(s => (
-			<StoryCard story={s} key={s.id} />
-		));
-		return (
-			<Card.Group>{storyCards}</Card.Group>
-		)
-	}
-}
+// if geolocation enabled - use that, otherwise use user's default zipcode
+
+const StoryMap = withScriptjs(
+	withGoogleMap(props => (
+		<div>
+			<GoogleMap
+				defaultZoom={4}
+				defaultCenter={{ lat: 37.0902, lng: -95.7129 }}
+			/>
+			{props.stories.map(s => <StoryMarker story={s} key={s.id} />)}
+		</div>
+	))
+);
+
+export default StoryMap;

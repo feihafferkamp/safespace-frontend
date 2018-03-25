@@ -34,8 +34,8 @@ export default class CommentForm extends Component {
 					/>
 				</Form.Field>
 				<Button type="submit" content="Submit" />
-				<a role="button" onClick={this.props.handleCollapse}>
-					Collapse
+				<a role="button" onClick={this.props.handleClose}>
+					Close
 				</a>
 			</Form>
 		);
