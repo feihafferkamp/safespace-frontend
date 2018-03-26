@@ -25,7 +25,7 @@ export default class NewStoryForm extends Component {
 			timeout: 5000
 		};
 		navigator.geolocation.getCurrentPosition(
-			this.getZip,
+			this.getLocation,
 			this.handleError,
 			options
 		);
@@ -33,13 +33,15 @@ export default class NewStoryForm extends Component {
 
 	handleError = error => {
 		console.dir(error);
+		this.setState({
+			location: '8.78,124.5'
+		});
 	};
 
-	getZip = pos => {
+	getLocation = pos => {
 		const latLong = `${pos.coords.latitude.toFixed(
 			2
 		)},${pos.coords.longitude.toFixed(2)}`;
-		console.log(latLong);
 		this.setState({
 			location: latLong
 		});
