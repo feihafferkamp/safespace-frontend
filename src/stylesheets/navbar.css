@@ -1,0 +1,27 @@
+.ui.secondary {
+	padding-top: 1rem;
+}
+
+.ui.secondary .item.my-nav-items {
+	color: #fcfaf2;
+	font-size: 1.5rem;
+	background-color: transparent;
+	box-shadow: none;
+}
+
+.ui.secondary .item.my-nav-items.active {
+	color: #fcfaf2;
+	font-size: 1.5rem;
+	background-color: transparent;
+	box-shadow: none;
+	border-bottom: 2px solid #fcfaf2;
+	border-radius: 0;
+}
+
+.ui .item.my-nav-items:hover {
+	color: #fcfaf2 !important;
+	background-color: transparent !important;
+	box-shadow: none !important;
+	border-bottom: 2px solid #fcfaf2 !important;
+	border-radius: 0 !important;
+}
