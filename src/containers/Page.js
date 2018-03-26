@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Navbar from '../components/Navbar';
 import NewStoryContainer from './NewStoryContainer';
 import StoryContainer from './StoryContainer';
+import StaticComponent from '../components/StaticComponent';
 import Welcome from '../components/Welcome';
 import { Route, Switch } from 'react-router-dom';
 
@@ -15,6 +16,10 @@ export default class Page extends Component {
 				<Switch>
 					<Route path="/new-story" component={NewStoryContainer} />
 					<Route path="/stories" component={StoryContainer} />
+					<Route
+						path="/:slug"
+						render={renderProps => <StaticComponent {...renderProps} />}
+					/>
 					<Route path="/" component={Welcome} />
 				</Switch>
 			</div>
