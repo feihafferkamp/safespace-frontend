@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Menu } from 'semantic-ui-react'
+import { Menu, Button } from 'semantic-ui-react'
 
 
 export default class Navbar extends Component {
@@ -44,6 +44,9 @@ export default class Navbar extends Component {
 		return (
 			<Menu>
 				{links}
+				<Menu.Item>
+					<Button onClick={this.props.handleLogout}>Log Out </Button>
+				</Menu.Item>
 			</Menu>
 		)
 	}
