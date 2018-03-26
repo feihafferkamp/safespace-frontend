@@ -23,7 +23,7 @@ export default class NewStoryForm extends Component {
 	}
 
 	getZip = (pos) => {
-		const latLong = `${pos.coords.latitude.toFixed(3)},${pos.coords.longitude.toFixed(3)}`
+		const latLong = `${pos.coords.latitude.toFixed(2)},${pos.coords.longitude.toFixed(2)}`
 		console.log(latLong)
 		this.setState({
 			location:latLong
