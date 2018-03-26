@@ -8,6 +8,26 @@ export default class NewStoryForm extends Component {
 		content:'',
 		tags:[],
 		user_id:'',
+		location:''
+	}
+
+	componentDidMount = () => {
+		let options = {
+			timeout:5000
+		}
+		navigator.geolocation.getCurrentPosition(this.getZip, this.handleError, options)
+	}
+
+	handleError = error => {
+		console.dir(error)
+	}
+
+	getZip = (pos) => {
+		const latLong = `${pos.coords.latitude.toFixed(3)},${pos.coords.longitude.toFixed(3)}`
+		console.log(latLong)
+		this.setState({
+			location:latLong
+		})
 	}
 
 	handleChange = e => {
@@ -24,7 +44,8 @@ export default class NewStoryForm extends Component {
 		let story = {
 			user_id: this.state.user_id,
 			content: this.state.content,
-			stories_tags_attributes: storiesTags
+			stories_tags_attributes: storiesTags,
+			location:this.state.location
 		}
 		this.props.handleSubmit(story)
 	}
