@@ -5,26 +5,32 @@ import closedEnvelope from '../icons/closedEnv.png';
 import openEnvelope from '../icons/openEnv.png';
 
 export default class StoryMarker extends Component {
-	state = { position: { lat: 40.7128, lng: -74.006 }, showInfo: false };
+	state = {
+		position: {
+			lat: Number(this.props.story.location.split(',')[0]),
+			lng: Number(this.props.story.location.split(',')[1])
+		},
+		showInfo: false
+	};
 
-	componentDidMount() {
-		fetch(
-			`http://maps.googleapis.com/maps/api/geocode/json?address=${
-				this.props.story.location
-			}&sensor=false`
-		)
-			.then(res => res.json())
-			.then(
-				json =>
-					json.status === 'OK'
-						? this.setState({
-								position: Object.assign(json.results[0].geometry.location)
-						  })
-						: this.setState({
-								position: { lat: 31, lng: -146 }
-						  })
-			);
-	}
+	// componentDidMount() {
+	// 	fetch(
+	// 		`http://maps.googleapis.com/maps/api/geocode/json?address=${
+	// 			this.props.story.location
+	// 		}&sensor=false`
+	// 	)
+	// 		.then(res => res.json())
+	// 		.then(
+	// 			json =>
+	// 				json.status === 'OK'
+	// 					? this.setState({
+	// 							position: Object.assign(json.results[0].geometry.location)
+	// 					  })
+	// 					: this.setState({
+	// 							position: { lat: 31, lng: -146 }
+	// 					  })
+	// 		);
+	// }
 
 	toggleShowInfo = () => {
 		this.setState({ showInfo: !this.state.showInfo });
@@ -40,6 +46,7 @@ export default class StoryMarker extends Component {
 	envelope = () => (this.state.showInfo ? openEnvelope : closedEnvelope);
 
 	render() {
+		console.log();
 		return (
 			<Marker
 				position={this.state.position}
