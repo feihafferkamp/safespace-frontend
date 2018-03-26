@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import NewStoryForm from '../components/NewStoryForm';
+import { Container } from 'semantic-ui-react'
 
 export default class NewStoryContainer extends Component {
 	state = {
-		tags:[]
+		tags:[],
+		errors:'',
+		posted:null
 	}
 
 	componentDidMount = () => {
@@ -23,10 +26,26 @@ export default class NewStoryContainer extends Component {
 		}
 		fetch('http://localhost:3000/stories', options)
 			.then(res => res.json())
-			.then(json => console.log(json))
+			.then(json => {
+				if(json.errors.length > 0) {
+					this.setState({
+						posted:false,
+						errors:json.errors.join(', ')
+					})
+				} else {
+					this.setState({
+						posted:true
+					})
+				}
+			})
 	}
 
 	render() {
-		return <NewStoryForm tags={this.state.tags} handleSubmit={this.addStory}/>;
+		return (
+			<Container>
+				<NewStoryForm posted={this.state.posted} errors={this.state.errors} tags={this.state.tags} handleSubmit={this.addStory}/>
+
+		</Container>
+		)
 	}
 }
