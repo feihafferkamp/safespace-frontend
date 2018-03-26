@@ -3,8 +3,6 @@ import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps';
 import { MarkerClusterer } from 'react-google-maps/lib/components/addons/MarkerClusterer';
 import StoryMarker from './StoryMarker';
 
-// if geolocation enabled - use that, otherwise use user's default zipcode
-
 const StoryMap = withScriptjs(
 	withGoogleMap(props => (
 		<div>
