@@ -13,13 +13,17 @@ export default class StoryContainer extends Component {
 
 	render() {
 		return (
-			<StoryMap
-				googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${KEY}&v=3.exp&libraries=geometry,drawing,places`}
-				loadingElement={<div style={{ height: `100%`, width: 'auto' }} />}
-				containerElement={<div style={{ height: `95vh`, width: 'auto' }} />}
-				mapElement={<div style={{ height: `100%`, width: 'auto' }} />}
-				stories={this.state.stories}
-			/>
+			<div>
+				{this.state.stories.length > 0 ?
+				<StoryMap
+					googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${KEY}&v=3.exp&libraries=geometry,drawing,places`}
+					loadingElement={<div style={{ height: `100%`, width: 'auto' }} />}
+					containerElement={<div style={{ height: `95vh`, width: 'auto' }} />}
+					mapElement={<div style={{ height: `100%`, width: 'auto' }} />}
+					stories={this.state.stories}
+				/>
+			: null}
+		</div>
 		);
 	}
 }
