@@ -1,50 +1,60 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Menu } from 'semantic-ui-react'
-
+import { Menu } from 'semantic-ui-react';
+import '../stylesheets/navbar.css';
 
 export default class Navbar extends Component {
-	state = {	}
+	state = {};
 
 	handleItemClick = e => {
 		this.setState({
-			activeItem:e.target.name
-		})
-	}
+			activeItem: e.target.name
+		});
+	};
 
 	pages = [
 		{
-			name:'home',
-			path:'/',
+			name: 'home',
+			path: '/'
 		},
 		{
-			name:'stories',
-			path:'/stories'
+			name: 'stories',
+			path: '/stories'
 		},
 		{
-			name:'new',
-			path:'/new-story'
+			name: 'new',
+			path: '/new-story'
 		},
 		{
-			name:'about',
-			path:'/about'
+			name: 'about',
+			path: '/about'
 		},
 		{
-			name:'contact',
-			path:'/contact',
+			name: 'contact',
+			path: '/contact'
 		}
-	]
+	];
 
 	render() {
-		const { activeItem } = this.state
+		const { activeItem } = this.state;
 		const links = this.pages.map(page => {
-			return <Menu.Item key={page.name} name={page.name} as={NavLink} exact to={page.path} active={activeItem === page.name} onClick={this.handleItemClick}/>
-
-		})
+			return (
+				<Menu.Item
+					key={page.name}
+					name={page.name}
+					as={NavLink}
+					exact
+					to={page.path}
+					active={activeItem === page.name}
+					onClick={this.handleItemClick}
+					className="my-nav-items"
+				/>
+			);
+		});
 		return (
-			<Menu>
+			<Menu size="large" className="secondary">
 				{links}
 			</Menu>
-		)
+		);
 	}
 }
