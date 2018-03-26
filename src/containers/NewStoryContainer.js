@@ -27,7 +27,7 @@ export default class NewStoryContainer extends Component {
 		fetch('http://localhost:3000/stories', options)
 			.then(res => res.json())
 			.then(json => {
-				if(json.errors.length > 0) {
+				if(json.errors) {
 					this.setState({
 						posted:false,
 						errors:json.errors.join(', ')
