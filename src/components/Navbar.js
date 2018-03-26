@@ -45,7 +45,7 @@ export default class Navbar extends Component {
 			<Menu>
 				{links}
 				<Menu.Item>
-					<Button onClick={this.props.handleLogout}>Log Out </Button>
+					{this.props.isLoggedIn ? <Button onClick={this.props.handleLogout}>Log Out </Button> : null}
 				</Menu.Item>
 			</Menu>
 		)

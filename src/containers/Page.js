@@ -71,32 +71,25 @@ export default class Page extends Component {
   }
 
 
+
+
 	render() {
-		if (localStorage.getItem('jwt')) {
+		const routes = <Switch><Route path="/new-story" component={NewStoryContainer} />
+						<Route path="/stories" component={StoryContainer} />
+						<Route path='/signup' component={SessionsContainer} />
+						<Route path='/login' render={() => <LogInContainer logInUser={this.loginUser} />} />
+						<Route
+							path="/:slug"
+							render={renderProps => <StaticComponent {...renderProps} />}
+						/>
+						<Route path="/" component={Welcome} /></Switch>
+
 			return(
 				<div>
-					<Navbar loggedIn={this.state.isLoggedIn} handleLogout={this.logout}/>
-						<Switch>
-							<Route path="/new-story" component={NewStoryContainer} />
-							<Route path="/stories" component={StoryContainer} />
-							<Route path='/signup' component={SessionsContainer} />
-							<Route path='/login' render={() => <LogInContainer logInUser={this.loginUser} />} />
-							<Route
-								path="/:slug"
-								render={renderProps => <StaticComponent {...renderProps} />}
-							/>
-							<Route path="/" component={Welcome} />
-						</Switch>
+					<Navbar isLoggedIn={this.state.isLoggedIn} handleLogout={this.logout}/>
+						{localStorage.getItem('jwt') ? routes : <LogInContainer logInUser={this.loginUser}/>}
 				</div>
 			)
-		} else {
-			return(
-				<div>
-					<Navbar />
-					<LogInContainer logInUser={this.loginUser} />
-				</div>
-			)
-		}
 
 	}
 }
