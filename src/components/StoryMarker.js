@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import StoryCard from './StoryCard';
-import { Marker, InfoWindow } from 'react-google-maps';
+import { GoogleMap, Marker, InfoWindow } from 'react-google-maps';
+import closedEnvelope from '../closedEnvelope.png';
+import openEnvelope from '../openEnvelope.png';
 
 export default class StoryMarker extends Component {
 	state = { position: { lat: 40.7128, lng: -74.006 }, showInfo: false };
@@ -33,9 +35,14 @@ export default class StoryMarker extends Component {
 			</InfoWindow>
 		) : null;
 
+	envelope = () => (this.state.showInfo ? openEnvelope : closedEnvelope);
+
 	render() {
 		return (
-			<Marker position={this.state.position} onClick={this.toggleShowInfo}>
+			<Marker
+				position={this.state.position}
+				onClick={this.toggleShowInfo}
+				icon={this.envelope()}>
 				{this.generateInfoWindow()}
 			</Marker>
 		);
