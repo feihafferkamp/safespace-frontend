@@ -23,20 +23,11 @@ export default class CommentContainer extends React.Component {
 			.then(json => this.addNewCommentToState(json));
 	};
 
-	addNewCommentToState = json => {
-		const newComment = {
-			id: json.id,
-			content: json.content,
-			created_at: json.created_at,
-			username: json.username
-		};
-		this.setState({ comments: [...this.state.comments, newComment] });
+	addNewCommentToState = ({ id, content, created_at, username }) => {
+		this.setState({
+			comments: [...this.state.comments, { id, content, created_at, username }]
+		});
 	};
-
-	// addNewCommentToState = ({id, content, created_at, username}) => {
-	// 	const newComment = {id, content, created_at, username}
-	// 	this.setState({ comments: [...this.state.comments, newComment] });
-	// };
 
 	toggleOpen = () => {
 		this.setState({ open: !this.state.open });
@@ -58,7 +49,7 @@ export default class CommentContainer extends React.Component {
 			</div>
 		) : (
 			<a role="button" onClick={this.toggleOpen}>
-				<Icon name="comment" /> Comment
+				<Icon name="comment" /> Comments ({this.state.comments.length})
 			</a>
 		);
 
