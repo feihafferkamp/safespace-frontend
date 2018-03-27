@@ -87,7 +87,7 @@ export default class Page extends Component {
 
 			return(
 				<div>
-					<Navbar isLoggedIn={this.state.isLoggedIn} handleLogout={this.logout}/>
+					<Navbar user={this.state.user} isLoggedIn={this.state.isLoggedIn} handleLogout={this.logout}/>
 						{localStorage.getItem('jwt') ? routes : <LogInContainer logInUser={this.loginUser}/>}
 				</div>
 			)
