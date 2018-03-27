@@ -32,6 +32,7 @@ export default class Navbar extends Component {
 	];
 
 	render() {
+		console.log(this.props)
 		const { activeItem } = this.state;
 		const links = this.pages.map(page => {
 			return (
@@ -47,6 +48,7 @@ export default class Navbar extends Component {
 				/>
 			);
 		});
+		const logoutButton = <Menu.Item ><Button onClick={this.props.handleLogout}>Log Out </Button></Menu.Item>
 		return (
 			<Menu size="large" className="secondary">
 				{links}
@@ -56,9 +58,13 @@ export default class Navbar extends Component {
 							<Dropdown.Item  as={NavLink} exact to='/feed'>Feed</Dropdown.Item>
 						</Dropdown.Menu>
 					</Dropdown>
-				<Menu.Item>
-					{this.props.isLoggedIn ? <Button onClick={this.props.handleLogout}>Log Out </Button> : null}
-				</Menu.Item>
+					<Menu.Menu position='right'>
+						<Menu.Item className='my-nav-items'>{this.props.user.username}</Menu.Item>
+						{this.props.isLoggedIn ? logoutButton
+						: null
+					}
+					</Menu.Menu>
+
 			</Menu>
 		);
 	}
