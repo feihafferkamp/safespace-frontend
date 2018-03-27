@@ -1,0 +1,14 @@
+label {
+  color:black;
+}
+
+div.ui.raised.segment {
+  width:70%;
+  margin:auto;
+  margin-top:50px;
+  min-width:300px;
+}
+
+.centered-text {
+  text-align: center;
+}

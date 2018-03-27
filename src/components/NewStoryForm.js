@@ -7,7 +7,8 @@ import {
 	Button,
 	Segment,
 	List,
-	Message
+	Message,
+	Label
 } from 'semantic-ui-react';
 import '../stylesheets/static.css';
 
@@ -16,7 +17,6 @@ export default class NewStoryForm extends Component {
 		username: '',
 		content: '',
 		tags: [],
-		user_id: '',
 		location: ''
 	};
 
@@ -59,7 +59,7 @@ export default class NewStoryForm extends Component {
 			return { tag_attributes: tag };
 		});
 		let story = {
-			user_id: this.state.user_id,
+			user_id: this.props.userId,
 			content: this.state.content,
 			stories_tags_attributes: storiesTags,
 			location: this.state.location
@@ -74,54 +74,29 @@ export default class NewStoryForm extends Component {
 		});
 	};
 
-	checkUser = () => {
-		fetch(`http://localhost:3000/users?name=${this.state.username}`)
-			.then(res => res.json())
-			.then(json => {
-				if (json) {
-					this.setState({
-						user_id: json.id
-					});
-				}
-			});
-	};
 
 	render() {
 		const tagItems = this.state.tags.map(tag => {
-			return <List.Item key={tag.name}>{tag.name}</List.Item>;
+			return <Label key={tag.name}>{tag.name}</Label>;
 		});
+
 
 		return (
 			<div>
 				<Form onSubmit={this.handleSubmit} id="storyForm">
-					<Form.Field inline>
-						<label>Username</label>
-						<Input
-							icon={
-								this.state.user_id !== ''
-									? { name: 'checkmark', color: 'green' }
-									: null
-							}
-							name="username"
-							onBlur={this.checkUser}
-							value={this.state.username}
-							onChange={this.handleChange}
-						/>
-					</Form.Field>
 					<Form.Field>
-						<label>Story</label>
 						<TextArea
 							name="content"
 							value={this.state.content}
 							onChange={this.handleChange}
+							placeholder='Write your story here...'
 						/>
 					</Form.Field>
 				</Form>
-				<Segment secondary>
-					<h4>Tags</h4>
-					<List bulleted horizontal>
+				<Segment basic>
+					<Label.Group color='teal'>
 						{tagItems}
-					</List>
+					</Label.Group>
 				</Segment>
 
 				<NewTagForm handleSubmit={this.addTag} tags={this.props.tags} />
@@ -138,7 +113,7 @@ export default class NewStoryForm extends Component {
 						content="Your story has been posted"
 					/>
 				) : null}
-				<Button type="submit" form="storyForm">
+				<Button primary floated='right' type="submit" form="storyForm">
 					Submit Story
 				</Button>
 			</div>
