@@ -81,6 +81,7 @@ export default class Navbar extends Component {
 					</Menu.Item>
 					{logoutButton}
 				</Menu.Menu>
+
 			</Menu>
 		);
 	}
