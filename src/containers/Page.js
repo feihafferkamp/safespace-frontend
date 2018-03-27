@@ -8,6 +8,7 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import SessionsContainer from './SessionsContainer'
 import LogInContainer from './LogInContainer'
 import withAuthentication from '../components/withAuthentication'
+import ProfileContainer from './ProfileContainer'
 
 
 // import StoryContainer from './StoryContainer';
@@ -78,9 +79,11 @@ export default class Page extends Component {
 
 
 	render() {
+		console.log(this.state)
 		const NavbarWithAuth = withAuthentication(Navbar, this.state.user)
 		const NewWithAuth = withAuthentication(NewStoryContainer, this.state.user)
 		const StoriesWithAuth = withRouter(withAuthentication(StoryContainer, this.state.user))
+		const ProfileWithAuth = withAuthentication(ProfileContainer)
 			return(
 				<div>
 					<Navbar handleLogout={this.logout} user={this.state.user}/>
@@ -88,6 +91,7 @@ export default class Page extends Component {
 							<Route path="/new-story" component={NewWithAuth} />
 							<Route path="/stories" component={StoriesWithAuth} />
 							<Route path='/signup' component={SessionsContainer} />
+							<Route path='/profile' component={ProfileWithAuth} />
 							<Route path='/login' render={() => <LogInContainer logInUser={this.loginUser} />} />
 							<Route path='/feed' render={() => <StoriesWithAuth type='feed'/>} />
 							<Route
