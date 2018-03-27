@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Menu, Button } from 'semantic-ui-react';
+import { Menu, Button, Icon } from 'semantic-ui-react';
 import '../stylesheets/navbar.css';
 
 export default class Navbar extends Component {
@@ -55,7 +55,14 @@ export default class Navbar extends Component {
 			<Menu size="large" className="secondary">
 				{links}
 				<Menu.Item>
-					{this.props.isLoggedIn ? <Button onClick={this.props.handleLogout}>Log Out </Button> : null}
+					{this.props.isLoggedIn ? (
+						<Button animated onClick={this.props.handleLogout}>
+							<Button.Content visible>Log Out</Button.Content>
+							<Button.Content hidden>
+								<Icon name="sign out alternate" />
+							</Button.Content>
+						</Button>
+					) : null}
 				</Menu.Item>
 			</Menu>
 		);
