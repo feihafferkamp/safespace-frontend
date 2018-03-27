@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import StoryCard from './StoryCard';
 import { Marker, InfoWindow } from 'react-google-maps';
-import closedEnvelope from '../icons/closedEnv.png';
-import openEnvelope from '../icons/openEnv.png';
+import closedEnvelope from '../media/closedEnv.png';
+import openEnvelope from '../media/openEnv.png';
 
 export default class StoryMarker extends Component {
 	state = {
