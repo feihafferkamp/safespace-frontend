@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import NewStoryForm from '../components/NewStoryForm';
-import { Container } from 'semantic-ui-react'
 import '../stylesheets/new-story.css'
 
 export default class NewStoryContainer extends Component {
@@ -27,7 +26,8 @@ export default class NewStoryContainer extends Component {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				Accept: 'application/json'
+				Accept: 'application/json',
+				Authorization: `Bearer ${localStorage.getItem('jwt')}`
 			},
 			body: JSON.stringify({story: storyAttributes})
 		}

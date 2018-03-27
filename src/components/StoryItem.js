@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Icon, Label, Container, List, Segment } from 'semantic-ui-react';
+import { Icon, Label, Segment } from 'semantic-ui-react';
 import CommentContainer from '../containers/CommentContainer';
 
 

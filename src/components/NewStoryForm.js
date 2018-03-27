@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import NewTagForm from './NewTagForm';
 import {
 	Form,
-	Input,
 	TextArea,
 	Button,
 	Segment,
-	List,
 	Message,
 	Label
 } from 'semantic-ui-react';

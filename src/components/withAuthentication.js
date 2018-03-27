@@ -4,10 +4,6 @@ export default function withAuthentication(ComponentWePassedIn, user) {
 
   return (class extends React.Component {
 
-      constructor(props){
-        super(props);
-      }
-
 
       componentDidMount() {
         this._checkAndRedirect();
