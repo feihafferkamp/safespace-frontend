@@ -39,7 +39,7 @@ export default class ProfileContainer extends React.Component {
     return(
       <Grid cols={2}>
         <Grid.Column>
-          {this.storyCards()}
+          {this.state.myStories.length > 0 ? this.storyCards() : <p>No stories yet</p>}
         </Grid.Column>
       </Grid>
     )
