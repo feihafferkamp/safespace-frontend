@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import NewStoryForm from '../components/NewStoryForm';
 import { Container } from 'semantic-ui-react'
+import '../stylesheets/new-story.css'
 
 export default class NewStoryContainer extends Component {
 	state = {
@@ -72,9 +73,9 @@ export default class NewStoryContainer extends Component {
 
 	render() {
 		return (
-			<Container>
+			<div className='container'>
 				<NewStoryForm userId={this.state.user.id} posted={this.state.posted} errors={this.state.errors} tags={this.state.tags} handleSubmit={this.addStory}/>
-			</Container>
+			</div>
 		)
 	}
 }
