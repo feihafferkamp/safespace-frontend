@@ -5,78 +5,77 @@ import StoryContainer from './StoryContainer';
 import StaticComponent from '../components/StaticComponent';
 import Welcome from '../components/Welcome';
 import { Route, Switch, withRouter } from 'react-router-dom';
-import SessionsContainer from './SessionsContainer'
-import LogInContainer from './LogInContainer'
-import withAuthentication from '../components/withAuthentication'
+import SessionsContainer from './SessionsContainer';
+import LogInContainer from './LogInContainer';
+import withAuthentication from '../components/withAuthentication';
 import ProfileContainer from './ProfileContainer'
-
-
-// import StoryContainer from './StoryContainer';
 
 export default class Page extends Component {
 	state = {
-		user:'',
-		isLoggedIn:false
-	}
+		user: {},
+		isLoggedIn: false
+	};
 
 	logout = () => {
-		localStorage.removeItem('jwt')
-    this.setState({
-      isLoggedIn: false,
-			user:''
-    }, () => {
-      this.props.history.push('/')
-    })
-  }
+		localStorage.removeItem('jwt');
+		this.setState(
+			{
+				isLoggedIn: false,
+				user: ''
+			},
+			() => {
+				this.props.history.push('/');
+			}
+		);
+	};
 
 	componentDidMount() {
-    if (localStorage.getItem('jwt')) {
-      let options = {
-        method: "GET",
-        headers: {
-          "Content-Type":"application/json",
-          Accept: "application/json",
-          Authorization: `Bearer ${localStorage.getItem('jwt')}`
-        }
-      }
-      fetch("http://localhost:3000/users", options)
-        .then((res) => res.json())
-        .then((json) => {
-          this.setState({
-            user: json,
-						isLoggedIn:true
-          })
+		if (localStorage.getItem('jwt')) {
+			let options = {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+					Accept: 'application/json',
+					Authorization: `Bearer ${localStorage.getItem('jwt')}`
+				}
+			};
+			fetch('http://localhost:3000/users', options)
+				.then(res => res.json())
+				.then(json => {
+					this.setState({
+						user: json,
+						isLoggedIn: true
+					});
+				});
+		} else {
+			console.log('You are not logged in');
+		}
+	}
 
-        })
-    } else {
-      console.log("You are not logged in")
-    }
-  }
-
-	loginUser = (loginParams) => {
-    let options = {
-      method: "POST",
-      headers: {
-        "Content-Type":"application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify(loginParams)
-    }
-    fetch("http://localhost:3000/auth", options)
-      .then((res) => res.json())
-      .then((json) => {
-        localStorage.setItem("jwt", json.token)
-        this.setState({
-          user: json.user,
-          isLoggedIn: true
-        }, () => {
-					this.props.history.push("/")
-        })
-      })
-  }
-
-
-
+	loginUser = loginParams => {
+		let options = {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json'
+			},
+			body: JSON.stringify(loginParams)
+		};
+		fetch('http://localhost:3000/auth', options)
+			.then(res => res.json())
+			.then(json => {
+				localStorage.setItem('jwt', json.token);
+				this.setState(
+					{
+						user: json.user,
+						isLoggedIn: true
+					},
+					() => {
+						this.props.history.push('/');
+					}
+				);
+			});
+	};
 
 	render() {
 		const NavbarWithAuth = withAuthentication(Navbar, this.state.user)
@@ -101,6 +100,5 @@ export default class Page extends Component {
 						</Switch>
 				</div>
 			)
-
 	}
 }
