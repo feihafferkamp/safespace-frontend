@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
-import { Card, Icon, Comment, Form, Button } from 'semantic-ui-react';
-import CommentContainer from '../containers/CommentContainer'
+import { Card, Icon } from 'semantic-ui-react';
+import CommentContainer from '../containers/CommentContainer';
 
 export default class StoryCard extends Component {
-
-
-
 	render() {
-
-
 		return (
 			<div>
 				<Card>
@@ -20,7 +15,10 @@ export default class StoryCard extends Component {
 						</Card.Meta>
 					</Card.Content>
 				</Card>
-				<CommentContainer comments={this.props.story.comments} storyId={this.props.story.id}/>
+				<CommentContainer
+					comments={this.props.story.comments}
+					storyId={this.props.story.id}
+				/>
 			</div>
 		);
 	}

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { KEY } from '../apiToken';
 import StoryMap from '../components/StoryMap';
+import StoryList from '../components/StoryList';
 import '../stylesheets/map.css';
-import StoryList from '../components/StoryList'
 
 export default class StoryContainer extends Component {
 	state = { stories: [] };
@@ -16,14 +16,17 @@ export default class StoryContainer extends Component {
 	render() {
 		return (
 			<div>
-			{this.props.type === 'feed' ? <StoryList stories={this.state.stories} />
-		: <StoryMap
-				googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${KEY}&v=3.exp&libraries=geometry,drawing,places`}
-				loadingElement={<div id="loading-element" />}
-				containerElement={<div id="map-container" />}
-				mapElement={<div id="map-element" />}
-				stories={this.state.stories}
-			/>}
+				{this.props.type === 'feed' ? (
+					<StoryList stories={this.state.stories} />
+				) : (
+					<StoryMap
+						googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${KEY}&v=3.exp&libraries=geometry,drawing,places`}
+						loadingElement={<div id="loading-element" />}
+						containerElement={<div id="map-container" />}
+						mapElement={<div id="map-element" />}
+						stories={this.state.stories}
+					/>
+				)}
 			</div>
 		);
 	}

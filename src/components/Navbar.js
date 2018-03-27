@@ -32,7 +32,7 @@ export default class Navbar extends Component {
 	];
 
 	render() {
-		console.log(this.props)
+		console.log(this.props);
 		const { activeItem } = this.state;
 		const links = this.pages.map(page => {
 			return (
@@ -48,25 +48,39 @@ export default class Navbar extends Component {
 				/>
 			);
 		});
-		const logoutButton = <Menu.Item ><Button animated onClick={this.props.handleLogout}>
-			<Button.Content visible>Log Out</Button.Content>
-			<Button.Content hidden>
-				<Icon name="sign out alternate" />
-			</Button.Content>
-		</Button></Menu.Item>
+		const logoutButton = (
+			<Menu.Item>
+				<Button animated onClick={this.props.handleLogout}>
+					<Button.Content visible>Log Out</Button.Content>
+					<Button.Content hidden>
+						<Icon name="sign out" />
+					</Button.Content>
+				</Button>
+			</Menu.Item>
+		);
 		return (
 			<Menu size="large" className="secondary">
 				{links}
-					<Dropdown text='Stories' pointing className='link item my-nav-items'>
-						<Dropdown.Menu >
-							<Dropdown.Item  className='my-nav-items' as={NavLink} exact to='/stories'>Map</Dropdown.Item>
-							<Dropdown.Item  as={NavLink} exact to='/feed'>Feed</Dropdown.Item>
-						</Dropdown.Menu>
-					</Dropdown>
-					<Menu.Menu position='right'>
-						<Menu.Item className='my-nav-items'>{this.props.user.username}</Menu.Item>
-						{logoutButton}
-					</Menu.Menu>
+				<Dropdown text="Stories" pointing className="link item my-nav-items">
+					<Dropdown.Menu>
+						<Dropdown.Item
+							className="my-nav-items"
+							as={NavLink}
+							exact
+							to="/stories">
+							Map
+						</Dropdown.Item>
+						<Dropdown.Item as={NavLink} exact to="/feed">
+							Feed
+						</Dropdown.Item>
+					</Dropdown.Menu>
+				</Dropdown>
+				<Menu.Menu position="right">
+					<Menu.Item className="my-nav-items">
+						{this.props.user.username}
+					</Menu.Item>
+					{logoutButton}
+				</Menu.Menu>
 			</Menu>
 		);
 	}

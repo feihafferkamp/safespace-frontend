@@ -6,7 +6,6 @@ import bgVid from '../media/bgVid.mp4';
 
 export default class Welcome extends Component {
 	render() {
-		console.log(bgVid)
 		return (
 			<Container>
 				<video className="bgVid" autoPlay loop muted>
