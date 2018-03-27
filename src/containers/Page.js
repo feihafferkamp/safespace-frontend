@@ -78,6 +78,7 @@ export default class Page extends Component {
 						<Route path="/stories" component={StoryContainer} />
 						<Route path='/signup' component={SessionsContainer} />
 						<Route path='/login' render={() => <LogInContainer logInUser={this.loginUser} />} />
+						<Route path='/feed' render={() => <StoryContainer type='feed'/>} />
 						<Route
 							path="/:slug"
 							render={renderProps => <StaticComponent {...renderProps} />}

@@ -6,10 +6,16 @@ export default class NewStoryContainer extends Component {
 	state = {
 		tags:[],
 		errors:'',
-		posted:null
+		posted:null,
+		user:''
 	}
 
 	componentDidMount = () => {
+		this.getTags()
+		this.getUser()
+	}
+
+	getTags = () => {
 		fetch('http://localhost:3000/tags')
 			.then(res => res.json())
 			.then(tags => this.setState({tags}))
@@ -40,12 +46,35 @@ export default class NewStoryContainer extends Component {
 			})
 	}
 
+	getUser = () => {
+		if (localStorage.getItem('jwt')) {
+      let options = {
+        method: "GET",
+        headers: {
+          "Content-Type":"application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        }
+      }
+      fetch("http://localhost:3000/users", options)
+        .then((res) => res.json())
+        .then((json) => {
+          this.setState({
+            user: json,
+						isLoggedIn:true
+          })
+
+        })
+    } else {
+      console.log("You are not logged in")
+    }
+	}
+
 	render() {
 		return (
 			<Container>
-				<NewStoryForm posted={this.state.posted} errors={this.state.errors} tags={this.state.tags} handleSubmit={this.addStory}/>
-
-		</Container>
+				<NewStoryForm userId={this.state.user.id} posted={this.state.posted} errors={this.state.errors} tags={this.state.tags} handleSubmit={this.addStory}/>
+			</Container>
 		)
 	}
 }

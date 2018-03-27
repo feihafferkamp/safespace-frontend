@@ -16,7 +16,6 @@ export default class NewStoryForm extends Component {
 		username: '',
 		content: '',
 		tags: [],
-		user_id: '',
 		location: ''
 	};
 
@@ -57,7 +56,7 @@ export default class NewStoryForm extends Component {
 			return { tag_attributes: tag };
 		});
 		let story = {
-			user_id: this.state.user_id,
+			user_id: this.props.userId,
 			content: this.state.content,
 			stories_tags_attributes: storiesTags,
 			location: this.state.location
@@ -72,40 +71,16 @@ export default class NewStoryForm extends Component {
 		});
 	};
 
-	checkUser = () => {
-		fetch(`http://localhost:3000/users?name=${this.state.username}`)
-			.then(res => res.json())
-			.then(json => {
-				if (json) {
-					this.setState({
-						user_id: json.id
-					});
-				}
-			});
-	};
 
 	render() {
 		const tagItems = this.state.tags.map(tag => {
 			return <List.Item key={tag.name}>{tag.name}</List.Item>;
 		});
 
+
 		return (
 			<div>
 				<Form onSubmit={this.handleSubmit} id="storyForm">
-					<Form.Field inline>
-						<label>Username</label>
-						<Input
-							icon={
-								this.state.user_id !== ''
-									? { name: 'checkmark', color: 'green' }
-									: null
-							}
-							name="username"
-							onBlur={this.checkUser}
-							value={this.state.username}
-							onChange={this.handleChange}
-						/>
-					</Form.Field>
 					<Form.Field>
 						<label>Story</label>
 						<TextArea
