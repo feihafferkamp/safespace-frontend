@@ -29,7 +29,6 @@ class NewTagForm extends React.Component {
 
 		return (
 			<Form id="tagForm" onSubmit={this.onSubmit}>
-				<label>Tags: </label>
 				<Input
 					list="oldTags"
 					icon="tags"
@@ -39,7 +38,7 @@ class NewTagForm extends React.Component {
 					onChange={this.handleChange}
 				/>
 				<datalist id="oldTags">{oldTags}</datalist>
-				<Button type="submit">Add Tag</Button>
+				<Button secondary type="submit">Add Tag</Button>
 			</Form>
 		);
 	}

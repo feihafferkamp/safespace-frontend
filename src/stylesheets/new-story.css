@@ -1,0 +1,18 @@
+div.container {
+  width:70%;
+  margin:auto;
+  min-width:300px;
+  margin-top:50px;
+}
+
+textarea {
+  min-height:200px;
+}
+
+#tagForm {
+  display:inline;
+}
+
+div.ui.basic.segment {
+  margin:0;
+}
