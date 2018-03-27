@@ -8,7 +8,7 @@ export default class ProfileContainer extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.user) {
+    if (this.props.user.id) {
       const id = this.props.user.id
       let options = {
         method: "GET",
@@ -18,11 +18,11 @@ export default class ProfileContainer extends React.Component {
           Authorization: `Bearer ${localStorage.getItem('jwt')}`
         }
       }
-      fetch("http://localhost:3000/users/"+id, options)
+      fetch("http://localhost:3000/stories?user_id="+id, options)
         .then((res) => res.json())
         .then((json) => {
           this.setState({
-            myStories:json.stories
+            myStories:json
           })
       })
     }
