@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Button, Icon, Header } from 'semantic-ui-react';
+import { Container, Button, Header } from 'semantic-ui-react';
 import '../stylesheets/static.css';
 import bgVid from '../media/bgVid.mp4';
 
@@ -12,7 +12,7 @@ export default class Welcome extends Component {
 					<source src={bgVid} type="video/mp4" />
 				</video>
 				<div className="contentContainer">
-					<Header as="h2">
+					<Header>
 						<h1 id="welcome">Welcome to Safe Space</h1>
 						<Header.Subheader>
 							<Link to={'/login'}>
