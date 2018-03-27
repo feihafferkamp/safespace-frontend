@@ -10,7 +10,7 @@ export default class StoryItem extends Component {
 		})
 		return (
 			<div className='story-item'>
-				<Segment piled>
+				<Segment piled >
 						<div>{this.props.story.content}</div>
 						<div>
 							<Icon name="user" />

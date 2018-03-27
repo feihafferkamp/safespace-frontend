@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Menu, Button } from 'semantic-ui-react';
+import { Menu, Button, Dropdown } from 'semantic-ui-react';
 import '../stylesheets/navbar.css';
 
 export default class Navbar extends Component {
@@ -16,10 +16,6 @@ export default class Navbar extends Component {
 		{
 			name: 'home',
 			path: '/'
-		},
-		{
-			name: 'stories',
-			path: '/stories'
 		},
 		{
 			name: 'new',
@@ -54,6 +50,12 @@ export default class Navbar extends Component {
 		return (
 			<Menu size="large" className="secondary">
 				{links}
+					<Dropdown text='Stories' pointing className='link item my-nav-items'>
+						<Dropdown.Menu >
+							<Dropdown.Item  className='my-nav-items' as={NavLink} exact to='/stories'>Map</Dropdown.Item>
+							<Dropdown.Item  as={NavLink} exact to='/feed'>Feed</Dropdown.Item>
+						</Dropdown.Menu>
+					</Dropdown>
 				<Menu.Item>
 					{this.props.isLoggedIn ? <Button onClick={this.props.handleLogout}>Log Out </Button> : null}
 				</Menu.Item>
