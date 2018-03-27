@@ -19,6 +19,7 @@ export default class StoryItem extends Component {
 						<CommentContainer
 							comments={this.props.story.comments}
 							storyId={this.props.story.id}
+              user={this.props.user}
 						/>
           <Label.Group tag color='teal'>
               {tags}

@@ -2,18 +2,18 @@ import React, { Component } from 'react';
 import { Form, Button } from 'semantic-ui-react';
 
 export default class CommentForm extends Component {
-	state = { comment: { username: '', content: '' } };
+	state = { content: '' }
 
 	handleInputChange = e => {
 		this.setState({
-			comment: { ...this.state.comment, [e.target.name]: e.target.value }
+			[e.target.name]: e.target.value
 		});
 	};
 
 	handleCommentSubmit = e => {
 		e.preventDefault();
-		this.props.submitComment(this.state);
-		this.setState({ comment: { username: '', content: '' } });
+		this.props.submitComment({comment: {content:this.state.content, username:this.props.user.username}});
+		this.setState({ content:'' });
 	};
 
 	render() {
@@ -21,18 +21,10 @@ export default class CommentForm extends Component {
 			<Form onSubmit={this.handleCommentSubmit}>
 				<Form.TextArea
 					name="content"
-					value={this.state.comment.content}
+					value={this.state.content}
 					placeholder="Your comment here..."
 					onChange={this.handleInputChange}
 				/>
-				<Form.Field>
-					<input
-						name="username"
-						value={this.state.comment.username}
-						placeholder="Your Username"
-						onChange={this.handleInputChange}
-					/>
-				</Form.Field>
 				<Button type="submit" content="Submit" />
 				<a role="button" onClick={this.props.handleClose}>
 					Close

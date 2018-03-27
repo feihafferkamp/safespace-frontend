@@ -20,7 +20,7 @@ export default class StoryCard extends Component {
 						</Card.Meta>
 					</Card.Content>
 				</Card>
-				<CommentContainer comments={this.props.story.comments} storyId={this.props.story.id}/>
+				<CommentContainer user={this.props.user} comments={this.props.story.comments} storyId={this.props.story.id}/>
 			</div>
 		);
 	}
