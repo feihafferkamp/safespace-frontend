@@ -4,7 +4,7 @@ import NewStoryContainer from './NewStoryContainer';
 import StoryContainer from './StoryContainer';
 import StaticComponent from '../components/StaticComponent';
 import Welcome from '../components/Welcome';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import SessionsContainer from './SessionsContainer'
 import LogInContainer from './LogInContainer'
 import withAuthentication from '../components/withAuthentication'
@@ -19,10 +19,13 @@ export default class Page extends Component {
 	}
 
 	logout = () => {
+		localStorage.removeItem('jwt')
     this.setState({
-      isLoggedIn: false
+      isLoggedIn: false,
+			user:''
+    }, () => {
+      this.props.history.push('/')
     })
-    localStorage.removeItem('jwt')
   }
 
 	componentDidMount() {
@@ -66,7 +69,7 @@ export default class Page extends Component {
           user: json.user,
           isLoggedIn: true
         }, () => {
-
+					this.props.history.push("/")
         })
       })
   }
@@ -75,21 +78,24 @@ export default class Page extends Component {
 
 
 	render() {
-		const routes = <Switch><Route path="/new-story" component={NewStoryContainer} />
-						<Route path="/stories" component={StoryContainer} />
-						<Route path='/signup' component={SessionsContainer} />
-						<Route path='/login' render={() => <LogInContainer logInUser={this.loginUser} />} />
-						<Route path='/feed' render={() => <StoryContainer type='feed'/>} />
-						<Route
-							path="/:slug"
-							render={renderProps => <StaticComponent {...renderProps} />}
-						/>
-						<Route path="/" component={Welcome} /></Switch>
 		const NavbarWithAuth = withAuthentication(Navbar, this.state.user)
+		const NewWithAuth = withAuthentication(NewStoryContainer, this.state.user)
+		const StoriesWithAuth = withRouter(withAuthentication(StoryContainer, this.state.user))
 			return(
 				<div>
-					<NavbarWithAuth handleLogout={this.logout}/>
-						{localStorage.getItem('jwt') ? routes : <LogInContainer logInUser={this.loginUser}/>}
+					<Navbar handleLogout={this.logout} user={this.state.user}/>
+						<Switch>
+							<Route path="/new-story" component={NewWithAuth} />
+							<Route path="/stories" component={StoriesWithAuth} />
+							<Route path='/signup' component={SessionsContainer} />
+							<Route path='/login' render={() => <LogInContainer logInUser={this.loginUser} />} />
+							<Route path='/feed' render={() => <StoriesWithAuth type='feed'/>} />
+							<Route
+								path="/:slug"
+								render={renderProps => <StaticComponent {...renderProps} />}
+							/>
+							<Route path="/" component={Welcome} />
+						</Switch>
 				</div>
 			)
 
