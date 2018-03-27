@@ -15,7 +15,7 @@ import ProfileContainer from './ProfileContainer'
 
 export default class Page extends Component {
 	state = {
-		user: {},
+		user:'',
 		isLoggedIn:false
 	}
 
@@ -79,7 +79,6 @@ export default class Page extends Component {
 
 
 	render() {
-		console.log(this.state)
 		const NavbarWithAuth = withAuthentication(Navbar, this.state.user)
 		const NewWithAuth = withAuthentication(NewStoryContainer, this.state.user)
 		const StoriesWithAuth = withRouter(withAuthentication(StoryContainer, this.state.user))
@@ -91,7 +90,7 @@ export default class Page extends Component {
 							<Route path="/new-story" component={NewWithAuth} />
 							<Route path="/stories" component={StoriesWithAuth} />
 							<Route path='/signup' component={SessionsContainer} />
-							<Route path='/profile' component={ProfileWithAuth} />
+							<Route path='/profile' render={() => <ProfileWithAuth user={this.state.user} />} />
 							<Route path='/login' render={() => <LogInContainer logInUser={this.loginUser} />} />
 							<Route path='/feed' render={() => <StoriesWithAuth type='feed'/>} />
 							<Route
