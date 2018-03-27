@@ -11,7 +11,8 @@ export default class CommentContainer extends React.Component {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				Accept: 'application/json'
+				Accept: 'application/json',
+				Authorization: `Bearer ${localStorage.getItem('jwt')}`
 			},
 			body: JSON.stringify(newCommentInfo)
 		};
@@ -45,6 +46,7 @@ export default class CommentContainer extends React.Component {
 				<CommentForm
 					submitComment={this.postComment}
 					handleClose={this.toggleOpen}
+					user={this.props.user}
 				/>
 			</div>
 		) : (
