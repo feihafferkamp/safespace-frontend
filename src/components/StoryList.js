@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Grid } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 import StoryItem from './StoryItem'
 import StoryFilter from './StoryFilter'
 import '../stylesheets/item.css'
@@ -16,7 +16,6 @@ export default class StoryList extends React.Component {
   }
 
   render() {
-    console.log(this.props.stories)
     const storyCards = this.props.stories.map(story => {
       return <StoryItem user={this.props.user} story={story} key={story.id} />
     })
