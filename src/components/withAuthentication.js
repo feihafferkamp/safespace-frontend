@@ -23,7 +23,6 @@ export default function withAuthentication(ComponentWePassedIn, user) {
       }
 
       render() {
-        console.log(user)
         return <ComponentWePassedIn user={user} {...this.props} />
       }
     })
