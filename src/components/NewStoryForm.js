@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import NewTagForm from './NewTagForm';
 import {
 	Form,
-	Input,
 	TextArea,
 	Button,
 	Segment,
-	List,
 	Message,
 	Label
 } from 'semantic-ui-react';
@@ -74,12 +72,10 @@ export default class NewStoryForm extends Component {
 		});
 	};
 
-
 	render() {
 		const tagItems = this.state.tags.map(tag => {
 			return <Label key={tag.name}>{tag.name}</Label>;
 		});
-
 
 		return (
 			<div>
@@ -89,14 +85,12 @@ export default class NewStoryForm extends Component {
 							name="content"
 							value={this.state.content}
 							onChange={this.handleChange}
-							placeholder='Write your story here...'
+							placeholder="Write your story here..."
 						/>
 					</Form.Field>
 				</Form>
 				<Segment basic>
-					<Label.Group color='teal'>
-						{tagItems}
-					</Label.Group>
+					<Label.Group color="teal">{tagItems}</Label.Group>
 				</Segment>
 
 				<NewTagForm handleSubmit={this.addTag} tags={this.props.tags} />
@@ -113,7 +107,7 @@ export default class NewStoryForm extends Component {
 						content="Your story has been posted"
 					/>
 				) : null}
-				<Button primary floated='right' type="submit" form="storyForm">
+				<Button primary floated="right" type="submit" form="storyForm">
 					Submit Story
 				</Button>
 			</div>
