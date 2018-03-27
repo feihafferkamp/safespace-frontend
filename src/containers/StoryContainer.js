@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { KEY } from '../apiToken';
 import StoryMap from '../components/StoryMap';
-import { Container } from 'semantic-ui-react';
 import '../stylesheets/map.css';
 import StoryList from '../components/StoryList'
 

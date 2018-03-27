@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Menu, Button, Dropdown } from 'semantic-ui-react';
+import { Menu, Button, Dropdown, Icon } from 'semantic-ui-react';
 import '../stylesheets/navbar.css';
 
 export default class Navbar extends Component {
@@ -48,7 +48,12 @@ export default class Navbar extends Component {
 				/>
 			);
 		});
-		const logoutButton = <Menu.Item ><Button onClick={this.props.handleLogout}>Log Out </Button></Menu.Item>
+		const logoutButton = <Menu.Item ><Button animated onClick={this.props.handleLogout}>
+			<Button.Content visible>Log Out</Button.Content>
+			<Button.Content hidden>
+				<Icon name="sign out alternate" />
+			</Button.Content>
+		</Button></Menu.Item>
 		return (
 			<Menu size="large" className="secondary">
 				{links}
@@ -62,7 +67,6 @@ export default class Navbar extends Component {
 						<Menu.Item className='my-nav-items'>{this.props.user.username}</Menu.Item>
 						{logoutButton}
 					</Menu.Menu>
-
 			</Menu>
 		);
 	}
