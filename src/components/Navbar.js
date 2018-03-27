@@ -60,9 +60,7 @@ export default class Navbar extends Component {
 					</Dropdown>
 					<Menu.Menu position='right'>
 						<Menu.Item className='my-nav-items'>{this.props.user.username}</Menu.Item>
-						{this.props.isLoggedIn ? logoutButton
-						: null
-					}
+						{logoutButton}
 					</Menu.Menu>
 
 			</Menu>

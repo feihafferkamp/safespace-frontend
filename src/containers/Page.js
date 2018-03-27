@@ -7,6 +7,7 @@ import Welcome from '../components/Welcome';
 import { Route, Switch } from 'react-router-dom';
 import SessionsContainer from './SessionsContainer'
 import LogInContainer from './LogInContainer'
+import withAuthentication from '../components/withAuthentication'
 
 
 // import StoryContainer from './StoryContainer';
@@ -84,10 +85,10 @@ export default class Page extends Component {
 							render={renderProps => <StaticComponent {...renderProps} />}
 						/>
 						<Route path="/" component={Welcome} /></Switch>
-
+		const NavbarWithAuth = withAuthentication(Navbar, this.state.user)
 			return(
 				<div>
-					<Navbar user={this.state.user} isLoggedIn={this.state.isLoggedIn} handleLogout={this.logout}/>
+					<NavbarWithAuth handleLogout={this.logout}/>
 						{localStorage.getItem('jwt') ? routes : <LogInContainer logInUser={this.loginUser}/>}
 				</div>
 			)
