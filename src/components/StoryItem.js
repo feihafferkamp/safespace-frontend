@@ -22,6 +22,7 @@ export default class StoryItem extends Component {
 					<Label.Group tag color="teal">
 						{this.props.story.tags ? tags : null}
 					</Label.Group>
+
 				</Segment>
 			</div>
 		);

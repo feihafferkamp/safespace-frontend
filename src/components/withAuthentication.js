@@ -1,25 +1,28 @@
 import React from 'react';
 
 export default function withAuthentication(ComponentWePassedIn, user) {
-	return class extends React.Component {
-		// constructor(props) {
-		// 	super(props);
-		// }
 
-		componentDidMount() {
-			this._checkAndRedirect();
-		}
+  return (class extends React.Component {
 
-		componentDidUpdate() {
-			this._checkAndRedirect();
-		}
 
-		_checkAndRedirect() {
-			if (!localStorage.getItem('jwt')) this.props.history.push('/');
-		}
+      componentDidMount() {
+        this._checkAndRedirect();
+      }
 
-		render() {
-			return <ComponentWePassedIn user={user} {...this.props} />;
-		}
-	};
-}
+      componentDidUpdate() {
+        this._checkAndRedirect();
+      }
+
+      _checkAndRedirect(){
+        if (!localStorage.getItem("jwt"))
+          this.props.history.push("/")
+      }
+
+      render() {
+        return <ComponentWePassedIn user={user} {...this.props} />
+      }
+    })
+
+
+
+};
