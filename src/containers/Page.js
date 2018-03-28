@@ -77,6 +77,11 @@ export default class Page extends Component {
 		const StoriesWithAuth = withRouter(
 			withAuthentication(StoryContainer, this.state.user)
 		);
+		const ProfileWithAuth = withAuthentication(
+			ProfileContainer,
+			this.state.user
+		);
+
 		return (
 			<div>
 				<video className="bgVid" autoPlay loop muted>
@@ -87,6 +92,10 @@ export default class Page extends Component {
 					<Route path="/new-story" component={NewWithAuth} />
 					<Route path="/stories" component={StoriesWithAuth} />
 					<Route path="/signup" component={SessionsContainer} />
+					<Route
+						path="/profile"
+						render={() => <ProfileWithAuth user={this.state.user} />}
+					/>
 					<Route
 						path="/login"
 						render={() => <LogInContainer logInUser={this.loginUser} />}
