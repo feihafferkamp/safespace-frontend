@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Button, Container, Segment } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import '../stylesheets/sessions.css';
 
 export default class SessionsContainer extends React.Component {
@@ -39,14 +39,14 @@ export default class SessionsContainer extends React.Component {
 							value={this.state.password}
 							onChange={this.handleChange}
 						/>
-						<Button color="primary" type="submit">
+					<Button primary type="submit">
 							Sign Up
 						</Button>
 					</Form>
 					<div className="centered-text">
-						<Link exact to="/login">
+						<NavLink exact to="/login">
 							or, Login
-						</Link>
+						</NavLink>
 					</div>
 				</Segment>
 			</Container>

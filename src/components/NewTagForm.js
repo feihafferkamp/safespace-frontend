@@ -25,7 +25,7 @@ class NewTagForm extends React.Component {
 
 	render() {
 		const oldTags = this.props.tags.map(tag => {
-			return <option key={tag.id} value={tag.name} />;
+			return <option key={tag.name} value={tag.name} />;
 		});
 
 		return (

@@ -27,15 +27,16 @@ export default class NewStoryForm extends Component {
 				location:this.props.story.location
 			})
 		} else {
+			let options = {
+				timeout: 5000
+			};
 			navigator.geolocation.getCurrentPosition(
 				this.getLocation,
 				this.handleError,
 				options
 			);
 		}
-		let options = {
-			timeout: 5000
-		};
+
 	};
 
 	handleError = error => {
