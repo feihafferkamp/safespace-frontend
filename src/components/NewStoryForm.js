@@ -74,15 +74,21 @@ export default class NewStoryForm extends Component {
 	};
 
 	deleteTag = e => {
-		console.dir(e.target.parentNode)
+		const tagToDelete = e.target.parentNode.innerText
+		const newTags = [...this.state.tags].filter(tag => {
+			return tag.name !== tagToDelete
+		})
+		this.setState({
+			tags:newTags
+		})
 	}
 
 	render() {
 		const tagItems = this.state.tags.map(tag => {
 			return <Label key={tag.name}>{tag.name}<Icon onClick={this.deleteTag} name='delete'/></Label>;
 		});
-
 		return (
+
 			<div>
 				<Form onSubmit={this.handleSubmit} id="storyForm">
 					<Form.Field>
