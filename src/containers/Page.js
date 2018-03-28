@@ -18,10 +18,8 @@ export default class Page extends Component {
 	};
 
 	componentDidMount() {
-		this.getUser()
+		this.getUser();
 	}
-
-
 
 	getUser = () => {
 		if (localStorage.getItem('jwt')) {
@@ -44,7 +42,7 @@ export default class Page extends Component {
 		} else {
 			console.log('You are not logged in');
 		}
-	}
+	};
 
 	logout = () => {
 		localStorage.removeItem('jwt');
@@ -79,7 +77,7 @@ export default class Page extends Component {
 	};
 
 	createUser = signupParams => {
-		console.log(signupParams)
+		console.log(signupParams);
 		let options = {
 			method: 'POST',
 			headers: {
@@ -99,13 +97,14 @@ export default class Page extends Component {
 	};
 
 	render() {
-
 		// const NavbarWithAuth = withAuthentication(Navbar, this.state.user);
 		const NewWithAuth = withAuthentication(NewStoryContainer, this.state.user);
 		const StoriesWithAuth = withRouter(
 			withAuthentication(StoryContainer, this.state.user)
 		);
-		const ProfileWithAuth = withRouter(withAuthentication(ProfileContainer, this.state.user));
+		const ProfileWithAuth = withRouter(
+			withAuthentication(ProfileContainer, this.state.user)
+		);
 
 		return (
 			<div>
@@ -116,8 +115,14 @@ export default class Page extends Component {
 				<Switch>
 					<Route path="/new-story" component={NewWithAuth} />
 					<Route path="/stories" component={StoriesWithAuth} />
-					<Route path="/signup" render={() => <SessionsContainer createUser={this.createUser} />} />
-					<Route path='/profile' render={() => <ProfileWithAuth user={this.state.user} />} />
+					<Route
+						path="/signup"
+						render={() => <SessionsContainer createUser={this.createUser} />}
+					/>
+					<Route
+						path="/profile"
+						render={() => <ProfileWithAuth user={this.state.user} />}
+					/>
 					<Route
 						path="/login"
 						render={() => <LogInContainer logInUser={this.loginUser} />}
