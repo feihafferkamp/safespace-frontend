@@ -20,7 +20,9 @@ export default class CommentContainer extends Component {
 			}
 		};
 		fetch(
-			`http://localhost:3000/stories/${this.props.storyId}/comments`,
+			`https://safespace-backend.herokuapp.com/stories/${
+				this.props.storyId
+			}/comments`,
 			options
 		)
 			.then(res => res.json())
@@ -38,11 +40,15 @@ export default class CommentContainer extends Component {
 			body: JSON.stringify(newCommentInfo)
 		};
 		fetch(
-			`http://localhost:3000/stories/${this.props.storyId}/comments`,
+			`https://safespace-backend.herokuapp.com/stories/${
+				this.props.storyId
+			}/comments`,
 			options
 		)
 			.then(res => res.json())
-			.then(newComJson => this.fetchComments());
+			.then(newComJson =>
+				this.setState({ comments: [...this.state.comments, newComJson] })
+			);
 	};
 
 	patchComment = editedComment => {
@@ -56,9 +62,9 @@ export default class CommentContainer extends Component {
 			body: JSON.stringify(editedComment)
 		};
 		fetch(
-			`http://localhost:3000/stories/${this.props.storyId}/comments/${
-				editedComment.comment.id
-			}`,
+			`https://safespace-backend.herokuapp.com/stories/${
+				this.props.storyId
+			}/comments/${editedComment.comment.id}`,
 			options
 		)
 			.then(res => res.json())

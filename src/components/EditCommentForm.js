@@ -24,13 +24,6 @@ export default class EditCommentForm extends Component {
 					value={this.state.comment.content}
 					onChange={this.handleInputChange}
 				/>
-				<Form.Field>
-					<input
-						name="username"
-						value={this.state.comment.username}
-						onChange={this.handleCommentSubmit}
-					/>
-				</Form.Field>
 				<Button type="submit" content="Done" />
 			</Form>
 		);

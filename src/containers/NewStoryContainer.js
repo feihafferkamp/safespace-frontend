@@ -17,7 +17,7 @@ export default class NewStoryContainer extends Component {
 	};
 
 	getTags = () => {
-		fetch('http://localhost:3000/tags')
+		fetch('https://safespace-backend.herokuapp.com/tags')
 			.then(res => res.json())
 			.then(tags => this.setState({ tags }));
 	};
@@ -32,7 +32,7 @@ export default class NewStoryContainer extends Component {
 			},
 			body: JSON.stringify({ story: storyAttributes })
 		};
-		fetch('http://localhost:3000/stories', options)
+		fetch('https://safespace-backend.herokuapp.com/stories', options)
 			.then(res => res.json())
 			.then(json => {
 				if (json.errors) {
@@ -58,7 +58,7 @@ export default class NewStoryContainer extends Component {
 					Authorization: `Bearer ${localStorage.getItem('jwt')}`
 				}
 			};
-			fetch('http://localhost:3000/users', options)
+			fetch('https://safespace-backend.herokuapp.com/users', options)
 				.then(res => res.json())
 				.then(json => {
 					this.setState({
