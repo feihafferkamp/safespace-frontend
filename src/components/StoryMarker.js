@@ -25,7 +25,7 @@ export default class StoryMarker extends Component {
 				onCloseClick={() =>
 					this.setState({ showInfo: false, icon: closedEnvelope })
 				}>
-				<StoryCard story={this.props.story} />
+				<StoryCard story={this.props.story} user={this.props.user} />
 			</InfoWindow>
 		) : null;
 
