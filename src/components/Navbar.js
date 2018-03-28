@@ -74,12 +74,13 @@ export default class Navbar extends Component {
 						</Dropdown.Item>
 					</Dropdown.Menu>
 				</Dropdown>
-				<Menu.Menu position="right">
+				{this.props.user ? <Menu.Menu position="right">
 					<Menu.Item as={NavLink} to="/profile" className="my-nav-items">
 						{this.props.user.username}
 					</Menu.Item>
 					{logoutButton}
 				</Menu.Menu>
+				: null}
 			</Menu>
 		);
 	}
