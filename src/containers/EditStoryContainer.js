@@ -10,7 +10,7 @@ export default class EditStoryContainer extends React.Component {
   }
 
   componentDidMount = () => {
-    fetch('http://localhost:3000/tags')
+    fetch('https://safespace-backend.herokuapp.com/tags')
 			.then(res => res.json())
 			.then(tags => this.setState({ tags }));
   }
@@ -30,7 +30,7 @@ export default class EditStoryContainer extends React.Component {
 			},
 			body: JSON.stringify({ story: storyAttributes })
 		};
-		fetch('http://localhost:3000/stories/'+this.props.story.id, options)
+		fetch('https://safespace-backend.herokuapp.com/stories/'+this.props.story.id, options)
 			.then(res => res.json())
 			.then(json => {
 				if (json.errors) {
