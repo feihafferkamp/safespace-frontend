@@ -1,5 +1,5 @@
 import React from 'react';
-import { Comment, Grid } from 'semantic-ui-react';
+import { Comment, Grid, Icon } from 'semantic-ui-react';
 import EditCommentForm from './EditCommentForm';
 import '../stylesheets/comment.css';
 
@@ -10,9 +10,26 @@ class CommentCard extends React.Component {
 		this.setState({ editing: true });
 	};
 
+	handleCommentEdits = editedComment => {
+		this.setState({ editing: false });
+		this.props.patchComment(editedComment);
+	};
+
+	showEditOption = () =>
+		this.props.comment.username === this.props.user.username ? (
+			<Grid.Column width={3}>
+				<a role="button" onClick={this.editComment}>
+					<Icon link name="edit" />
+				</a>
+			</Grid.Column>
+		) : null;
+
 	render() {
 		return this.state.editing ? (
-			<EditCommentForm comment={this.props.comment} />
+			<EditCommentForm
+				comment={this.props.comment}
+				onSubmit={this.handleCommentEdits}
+			/>
 		) : (
 			<Comment.Content className="comment-content">
 				<Grid column={2}>
@@ -21,11 +38,7 @@ class CommentCard extends React.Component {
 						<Grid.Column width={13}>
 							<Comment.Text>{this.props.comment.content}</Comment.Text>
 						</Grid.Column>
-						<Grid.Column width={3}>
-							<a role="button" onClick={this.editComment}>
-								Edit
-							</a>
-						</Grid.Column>
+						{this.showEditOption()}
 					</Grid.Row>
 				</Grid>
 			</Comment.Content>

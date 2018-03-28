@@ -13,12 +13,10 @@ export default class EditCommentForm extends Component {
 
 	handleCommentSubmit = e => {
 		e.preventDefault();
-		this.props.submitComment(this.state);
-		this.setState({ comment: { username: '', content: '' } });
+		this.props.onSubmit(this.state);
 	};
 
 	render() {
-		console.log(this.state);
 		return (
 			<Form onSubmit={this.handleCommentSubmit}>
 				<Form.TextArea
@@ -30,13 +28,10 @@ export default class EditCommentForm extends Component {
 					<input
 						name="username"
 						value={this.state.comment.username}
-						onChange={this.handleInputChange}
+						onChange={this.handleCommentSubmit}
 					/>
 				</Form.Field>
-				<Button type="submit" content="Submit" />
-				<a role="button" onClick={this.props.handleClose}>
-					Close
-				</a>
+				<Button type="submit" content="Done" />
 			</Form>
 		);
 	}

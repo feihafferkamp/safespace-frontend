@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Comment, Icon } from 'semantic-ui-react';
 import CommentCard from '../components/CommentCard';
 import NewCommentForm from '../components/NewCommentForm';
 
-export default class CommentContainer extends React.Component {
+export default class CommentContainer extends Component {
 	state = { comments: this.props.comments, open: false };
 
 	postNewComment = newCommentInfo => {
@@ -24,6 +24,28 @@ export default class CommentContainer extends React.Component {
 			.then(json => this.addNewCommentToState(json));
 	};
 
+	patchComment = editedComment => {
+		debugger;
+		const options = {
+			method: 'PATCH',
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json',
+				Authorization: `Bearer ${localStorage.getItem('jwt')}`
+			},
+			body: JSON.stringify(editedComment)
+		};
+
+		fetch(
+			`http://localhost:3000/stories/${this.props.storyId}/comments/${
+				editedComment.comment.id
+			}`,
+			options
+		)
+			.then(res => res.json())
+			.then(json => console.log(json));
+	};
+
 	addNewCommentToState = ({ id, content, created_at, username }) => {
 		this.setState({
 			comments: [...this.state.comments, { id, content, created_at, username }]
@@ -36,10 +58,16 @@ export default class CommentContainer extends React.Component {
 
 	commentCards = () =>
 		this.state.comments.map(c => (
-			<CommentCard comment={c} key={c.id} handleShow={this.setShow} />
+			<CommentCard
+				patchComment={this.patchComment}
+				comment={c}
+				key={c.id}
+				handleShow={this.setShow}
+				user={this.props.user}
+			/>
 		));
 
-	generateDisplay = () =>
+	generateCommentCards = () =>
 		this.state.open ? (
 			<div>
 				<Comment>{this.commentCards()}</Comment>
@@ -56,6 +84,6 @@ export default class CommentContainer extends React.Component {
 		);
 
 	render() {
-		return <Comment.Group>{this.generateDisplay()}</Comment.Group>;
+		return <Comment.Group>{this.generateCommentCards()}</Comment.Group>;
 	}
 }
