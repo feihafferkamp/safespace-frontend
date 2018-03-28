@@ -77,9 +77,11 @@ export default class NewStoryForm extends Component {
 
 	addTag = newTag => {
 		const tag = { name: newTag };
-		this.setState({
-			tags: [...this.state.tags, tag]
-		});
+		if(!this.state.tags.find(tag => tag.name === newTag)) {
+			this.setState({
+				tags: [...this.state.tags, tag]
+			});
+		}
 	};
 
 	deleteTag = e => {

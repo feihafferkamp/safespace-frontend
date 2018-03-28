@@ -62,6 +62,7 @@ export default class Page extends Component {
 	};
 
 	loginUser = loginParams => {
+		console.log(loginParams)
 		let options = {
 			method: 'POST',
 			headers: {
@@ -73,9 +74,10 @@ export default class Page extends Component {
 		fetch('https://safespace-backend.herokuapp.com/auth', options)
 			.then(res => res.json())
 			.then(json => {
+				console.log(json)
 				if (json.error) {
 					this.setState({
-						error:'Username and/or password not found'
+						errors:'Username and/or password not found'
 					})
 				} else {
 					localStorage.setItem('jwt', json.token);
