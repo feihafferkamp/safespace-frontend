@@ -95,7 +95,7 @@ export default class NewStoryForm extends Component {
 					</Form.Field>
 				</Form>
 				<Segment basic>
-					<Label.Group color="teal">{tagItems}</Label.Group>
+					<Label.Group color="teal">{this.state.tags.length > 0 ? tagItems : null}</Label.Group>
 				</Segment>
 
 				<NewTagForm handleSubmit={this.addTag} tags={this.props.tags} />
