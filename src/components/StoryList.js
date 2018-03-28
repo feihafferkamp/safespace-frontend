@@ -15,7 +15,6 @@ export default class StoryList extends React.Component {
 	};
 
 	render() {
-		console.log(this.props.stories);
 		const storyCards = this.props.stories.map(story => {
 			return <StoryItem story={story} key={story.id} />;
 		});

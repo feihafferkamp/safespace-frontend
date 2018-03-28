@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'semantic-ui-react';
+import '../stylesheets/comment.css';
 
-export default class CommentForm extends Component {
+export default class NewCommentForm extends Component {
 	state = { comment: { username: '', content: '' } };
 
 	handleInputChange = e => {

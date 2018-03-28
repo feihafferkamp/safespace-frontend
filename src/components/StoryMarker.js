@@ -3,6 +3,7 @@ import StoryCard from './StoryCard';
 import { Marker, InfoWindow } from 'react-google-maps';
 import closedEnvelope from '../media/closedEnv.png';
 import openEnvelope from '../media/openEnv.png';
+import '../stylesheets/map.css';
 
 export default class StoryMarker extends Component {
 	state = {
