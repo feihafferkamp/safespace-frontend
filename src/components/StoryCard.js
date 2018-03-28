@@ -20,6 +20,7 @@ export default class StoryCard extends Component {
 				<CommentContainer
 					comments={this.props.story.comments}
 					storyId={this.props.story.id}
+					user={this.props.user}
 				/>
 			</div>
 		);
