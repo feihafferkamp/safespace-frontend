@@ -10,7 +10,9 @@ const StoryMap = withScriptjs(
 				defaultZoom={4}
 				defaultCenter={{ lat: 37.0902, lng: -95.7129 }}>
 				<MarkerClusterer enableRetinaIcons={true} maxZoom={5} gridSize={100}>
-					{props.stories.map(s => <StoryMarker story={s} key={s.id} />)}
+					{props.stories.length > 0
+						? props.stories.map(s => <StoryMarker story={s} key={s.id} />)
+						: null}
 				</MarkerClusterer>
 			</GoogleMap>
 		</div>
