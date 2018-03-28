@@ -9,19 +9,22 @@ const StaticComponent = props => {
 		<div className="static about">
 			<h1>About</h1>
 			<Segment raised padded basic>
-				Safe Space is an anonymous social network platform for women worldwide to share their experiences, ask questions, and build community.
+				Safe Space is an anonymous social network platform for women worldwide
+				to share their experiences, ask questions, and build community.
 			</Segment>
 		</div>
 	);
 
 	const contact = (
-		<div className="static">
+		<div className="static contact">
 			<h1>Contact</h1>
-			<p>Questions, comments, suggestions? Let us know!</p>
-			<ul>
-				<li>Katy - 123-456-7890</li>
-				<li>Fei - 123-456-7890</li>
-			</ul>
+			<Segment raised padded basic>
+				<p>Questions, comments, suggestions? Let us know!</p>
+				<p>
+					Katy: 123-456-7890
+					<br />Fei: 123-456-7890
+				</p>
+			</Segment>
 		</div>
 	);
 
