@@ -9,6 +9,7 @@ import SessionsContainer from './SessionsContainer';
 import LogInContainer from './LogInContainer';
 import withAuthentication from '../components/withAuthentication';
 import ProfileContainer from './ProfileContainer'
+import {bgVid} from '../media/bgVid.mp4'
 
 export default class Page extends Component {
 	state = {
@@ -72,7 +73,6 @@ export default class Page extends Component {
 	};
 
 	render() {
-<<<<<<< HEAD
 
 		const NavbarWithAuth = withAuthentication(Navbar, this.state.user)
 		const NewWithAuth = withAuthentication(NewStoryContainer, this.state.user)
@@ -80,6 +80,9 @@ export default class Page extends Component {
 		const ProfileWithAuth = withAuthentication(ProfileContainer)
 			return(
 				<div>
+					<video className="bgVid" autoPlay loop muted>
+						<source src={bgVid} type="video/mp4" />
+					</video>
 					<Navbar handleLogout={this.logout} user={this.state.user}/>
 						<Switch>
 							<Route path="/new-story" component={NewWithAuth} />
@@ -96,35 +99,6 @@ export default class Page extends Component {
 						</Switch>
 				</div>
 			)
-=======
-		// const NavbarWithAuth = withAuthentication(Navbar, this.state.user);
-		const NewWithAuth = withAuthentication(NewStoryContainer, this.state.user);
-		const StoriesWithAuth = withRouter(
-			withAuthentication(StoryContainer, this.state.user)
-		);
-		return (
-			<div>
-				<video className="bgVid" autoPlay loop muted>
-					<source src={bgVid} type="video/mp4" />
-				</video>
-				<Navbar handleLogout={this.logout} user={this.state.user} />
-				<Switch>
-					<Route path="/new-story" component={NewWithAuth} />
-					<Route path="/stories" component={StoriesWithAuth} />
-					<Route path="/signup" component={SessionsContainer} />
-					<Route
-						path="/login"
-						render={() => <LogInContainer logInUser={this.loginUser} />}
-					/>
-					<Route path="/feed" render={() => <StoriesWithAuth type="feed" />} />
-					<Route
-						path="/:slug"
-						render={renderProps => <StaticComponent {...renderProps} />}
-					/>
-					<Route path="/" component={Welcome} />
-				</Switch>
-			</div>
-		);
->>>>>>> allbgs
+
 	}
 }
