@@ -75,7 +75,7 @@ export default class Page extends Component {
 			.then(json => {
 				if (json.error) {
 					this.setState({
-						error:'Username and/or password not found'
+						errors:'Username and/or password not found'
 					})
 				} else {
 					localStorage.setItem('jwt', json.token);
