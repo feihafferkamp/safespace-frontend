@@ -8,7 +8,7 @@ export default class StoryContainer extends Component {
 	state = { stories: [] };
 
 	componentDidMount = () => {
-		fetch('http://localhost:3000/stories')
+		fetch('https://safespace-backend.herokuapp.com/stories')
 			.then(res => res.json())
 			.then(stories => this.setState({ stories }));
 	};
