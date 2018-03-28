@@ -39,7 +39,7 @@ class NewTagForm extends React.Component {
 					onChange={this.handleChange}
 				/>
 				<datalist id="oldTags">{oldTags}</datalist>
-				<Button className="addTag" type="submit">
+				<Button className="addTag" secondary type="submit">
 					Add Tag
 				</Button>
 			</Form>

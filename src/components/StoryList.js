@@ -20,7 +20,8 @@ export default class StoryList extends React.Component {
 		});
 		return (
 			<div className="story-container">
-				<StoryFilter handleChange={this.setFilter} />
+				{//<StoryFilter handleChange={this.setFilter} />
+				}
 				<Grid columns={3} stackable>
 					{storyCards}
 				</Grid>

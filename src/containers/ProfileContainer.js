@@ -1,10 +1,13 @@
 import React from 'react'
 import { Grid } from 'semantic-ui-react'
 import StoryItem from '../components/StoryItem'
+import '../stylesheets/item.css';
+import EditStoryContainer from './EditStoryContainer'
 
 export default class ProfileContainer extends React.Component {
   state = {
-    myStories:[]
+    myStories:[],
+    storyToEdit:''
   }
 
   componentDidMount() {
@@ -30,7 +33,9 @@ export default class ProfileContainer extends React.Component {
   }
 
   editStory = story => {
-    console.log(story)
+    this.setState({
+      storyToEdit: story
+    })
   }
 
   storyCards = () => {
@@ -41,11 +46,13 @@ export default class ProfileContainer extends React.Component {
 
   render() {
     return(
-      <Grid cols={2}>
-        <Grid.Column>
+      <div>
+        {this.state.storyToEdit ? <EditStoryContainer user={this.props.user} story={this.state.storyToEdit} /> : null}
+        <Grid columns={3} stackable>
           {this.state.myStories.length > 0 ? this.storyCards() : <p>No stories yet</p>}
-        </Grid.Column>
-      </Grid>
+        </Grid>
+      </div>
+
     )
   }
 }

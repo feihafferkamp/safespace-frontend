@@ -56,6 +56,7 @@ export default class CommentContainer extends React.Component {
 		);
 
 	render() {
+		console.log(this.props)
 		return <Comment.Group>{this.generateDisplay()}</Comment.Group>;
 	}
 }
