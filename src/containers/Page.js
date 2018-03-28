@@ -16,19 +16,6 @@ export default class Page extends Component {
 		isLoggedIn: false
 	};
 
-	logout = () => {
-		localStorage.removeItem('jwt');
-		this.setState(
-			{
-				isLoggedIn: false,
-				user: ''
-			},
-			() => {
-				this.props.history.push('/');
-			}
-		);
-	};
-
 	componentDidMount() {
 		if (localStorage.getItem('jwt')) {
 			let options = {
@@ -52,6 +39,19 @@ export default class Page extends Component {
 		}
 	}
 
+	logout = () => {
+		localStorage.removeItem('jwt');
+		this.setState(
+			{
+				isLoggedIn: false,
+				user: ''
+			},
+			() => {
+				this.props.history.push('/');
+			}
+		);
+	};
+
 	loginUser = loginParams => {
 		let options = {
 			method: 'POST',
@@ -65,19 +65,14 @@ export default class Page extends Component {
 			.then(res => res.json())
 			.then(json => {
 				localStorage.setItem('jwt', json.token);
-				this.setState(
-					{
-						user: json.user,
-						isLoggedIn: true
-					},
-					() => {
-						this.props.history.push('/');
-					}
-				);
+				this.setState({ user: json.user, isLoggedIn: true }, () => {
+					this.props.history.push('/stories');
+				});
 			});
 	};
 
 	render() {
+<<<<<<< HEAD
 
 		const NavbarWithAuth = withAuthentication(Navbar, this.state.user)
 		const NewWithAuth = withAuthentication(NewStoryContainer, this.state.user)
@@ -101,5 +96,35 @@ export default class Page extends Component {
 						</Switch>
 				</div>
 			)
+=======
+		// const NavbarWithAuth = withAuthentication(Navbar, this.state.user);
+		const NewWithAuth = withAuthentication(NewStoryContainer, this.state.user);
+		const StoriesWithAuth = withRouter(
+			withAuthentication(StoryContainer, this.state.user)
+		);
+		return (
+			<div>
+				<video className="bgVid" autoPlay loop muted>
+					<source src={bgVid} type="video/mp4" />
+				</video>
+				<Navbar handleLogout={this.logout} user={this.state.user} />
+				<Switch>
+					<Route path="/new-story" component={NewWithAuth} />
+					<Route path="/stories" component={StoriesWithAuth} />
+					<Route path="/signup" component={SessionsContainer} />
+					<Route
+						path="/login"
+						render={() => <LogInContainer logInUser={this.loginUser} />}
+					/>
+					<Route path="/feed" render={() => <StoriesWithAuth type="feed" />} />
+					<Route
+						path="/:slug"
+						render={renderProps => <StaticComponent {...renderProps} />}
+					/>
+					<Route path="/" component={Welcome} />
+				</Switch>
+			</div>
+		);
+>>>>>>> allbgs
 	}
 }

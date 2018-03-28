@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'semantic-ui-react';
+import '../stylesheets/comment.css';
 
-export default class CommentForm extends Component {
-	state = { content: '' }
+export default class NewCommentForm extends Component {
+	state = { comment: { username: '', content: '' } };
 
 	handleInputChange = e => {
 		this.setState({
@@ -12,8 +13,13 @@ export default class CommentForm extends Component {
 
 	handleCommentSubmit = e => {
 		e.preventDefault();
-		this.props.submitComment({comment: {content:this.state.content, username:this.props.user.username}});
-		this.setState({ content:'' });
+		this.props.submitComment({
+			comment: {
+				content: this.state.content,
+				username: this.props.user.username
+			}
+		});
+		this.setState({ content: '' });
 	};
 
 	render() {

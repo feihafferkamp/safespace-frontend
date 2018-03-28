@@ -1,12 +1,12 @@
 import React from 'react';
 import { Comment, Icon } from 'semantic-ui-react';
 import CommentCard from '../components/CommentCard';
-import CommentForm from '../components/CommentForm';
+import NewCommentForm from '../components/NewCommentForm';
 
 export default class CommentContainer extends React.Component {
 	state = { comments: this.props.comments, open: false };
 
-	postComment = newCommentInfo => {
+	postNewComment = newCommentInfo => {
 		const options = {
 			method: 'POST',
 			headers: {
@@ -43,8 +43,8 @@ export default class CommentContainer extends React.Component {
 		this.state.open ? (
 			<div>
 				<Comment>{this.commentCards()}</Comment>
-				<CommentForm
-					submitComment={this.postComment}
+				<NewCommentForm
+					submitComment={this.postNewComment}
 					handleClose={this.toggleOpen}
 					user={this.props.user}
 				/>

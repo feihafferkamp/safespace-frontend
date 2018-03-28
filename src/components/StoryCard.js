@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Card, Icon } from 'semantic-ui-react';
 import CommentContainer from '../containers/CommentContainer';
+import '../stylesheets/story.css';
 
 
 export default class StoryCard extends Component {

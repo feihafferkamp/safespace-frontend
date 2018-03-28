@@ -32,7 +32,6 @@ export default class Navbar extends Component {
 	];
 
 	render() {
-
 		const { activeItem } = this.state;
 		const links = this.pages.map(page => {
 			return (
@@ -76,12 +75,11 @@ export default class Navbar extends Component {
 					</Dropdown.Menu>
 				</Dropdown>
 				<Menu.Menu position="right">
-					<Menu.Item as={NavLink} to='/profile' className="my-nav-items">
+					<Menu.Item as={NavLink} to="/profile" className="my-nav-items">
 						{this.props.user.username}
 					</Menu.Item>
 					{logoutButton}
 				</Menu.Menu>
-
 			</Menu>
 		);
 	}

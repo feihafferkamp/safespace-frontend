@@ -2,15 +2,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Button, Header } from 'semantic-ui-react';
 import '../stylesheets/static.css';
-import bgVid from '../media/bgVid.mp4';
 
 export default class Welcome extends Component {
 	render() {
 		return (
 			<Container>
-				<video className="bgVid" autoPlay loop muted>
-					<source src={bgVid} type="video/mp4" />
-				</video>
 				<div className="contentContainer">
 					<Header>
 						<h1 id="welcome">Welcome to Safe Space</h1>
