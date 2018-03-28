@@ -14,7 +14,8 @@ import bgVid from '../media/bgVid.mp4';
 export default class Page extends Component {
 	state = {
 		user: '',
-		isLoggedIn: false
+		isLoggedIn: false,
+		errors:''
 	};
 
 	componentDidMount() {
@@ -42,7 +43,10 @@ export default class Page extends Component {
 					});
 				});
 		} else {
-			console.log('You are not logged in');
+			this.setState({
+				user:'',
+				isLoggedIn:false
+			});
 		}
 	}
 
@@ -71,15 +75,20 @@ export default class Page extends Component {
 		fetch('http://localhost:3000/auth', options)
 			.then(res => res.json())
 			.then(json => {
-				localStorage.setItem('jwt', json.token);
-				this.setState({ user: json.user, isLoggedIn: true }, () => {
-					this.props.history.push('/stories');
-				});
+				if (json.error) {
+					this.setState({
+						error:'Username and/or password not found'
+					})
+				} else {
+					localStorage.setItem('jwt', json.token);
+					this.setState({ user: json.user, isLoggedIn: true }, () => {
+						this.props.history.push('/stories');
+					});
+				}
 			});
 	};
 
 	createUser = signupParams => {
-		console.log(signupParams)
 		let options = {
 			method: 'POST',
 			headers: {
@@ -91,10 +100,16 @@ export default class Page extends Component {
 		fetch('http://localhost:3000/users', options)
 			.then(res => res.json())
 			.then(json => {
-				localStorage.setItem('jwt', json.token);
-				this.setState({ user: json.user, isLoggedIn: true }, () => {
-					this.props.history.push('/stories');
-				});
+				if(json.errors) {
+					this.setState({
+						errors: json.errors.join(', ')
+					})
+				} else {
+					localStorage.setItem('jwt', json.token);
+					this.setState({ user: json.user, isLoggedIn: true }, () => {
+						this.props.history.push('/stories');
+					});
+				}
 			});
 	};
 
@@ -116,11 +131,11 @@ export default class Page extends Component {
 				<Switch>
 					<Route path="/new-story" component={NewWithAuth} />
 					<Route path="/stories" component={StoriesWithAuth} />
-					<Route path="/signup" render={() => <SessionsContainer createUser={this.createUser} />} />
+					<Route path="/signup" render={() => <SessionsContainer errors={this.state.errors} createUser={this.createUser} />} />
 					<Route path='/profile' render={() => <ProfileWithAuth user={this.state.user} />} />
 					<Route
 						path="/login"
-						render={() => <LogInContainer logInUser={this.loginUser} />}
+						render={() => <LogInContainer errors={this.state.errors} logInUser={this.loginUser} />}
 					/>
 					<Route path="/feed" render={() => <StoriesWithAuth type="feed" />} />
 					<Route

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Button, Container, Segment } from 'semantic-ui-react';
+import { Form, Button, Container, Segment, Message } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import '../stylesheets/sessions.css';
 
@@ -42,6 +42,14 @@ export default class LogInContainer extends React.Component {
 							Log In
 						</Button>
 					</Form>
+					{this.props.errors ?
+						<Message
+							error
+							header="Could not log in"
+							content={this.props.error}
+						/>
+						: null}
+					}}
 					<div className="centered-text">
 						<Link exact to="/signup">
 							or, Sign Up
