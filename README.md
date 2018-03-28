@@ -12,17 +12,20 @@ Safe Space is an anonymous social network platform for women worldwide to share 
 cd safespace-frontend
 ```
 
-4.  Open index page in browser
+4.  Run server
 
 ```
-open index.html
+yarn start
 ```
 
 ## Built With
 
-* React.js
-* Google Maps API
-* [Semantic UI](https://semantic-ui.com/) - CSS styling framework
+* [React.js](https://reactjs.org/) - a JavaScript library for building user interfaces
+* [React Google Maps](https://tomchentw.github.io/react-google-maps/) - a set of React components wrapped around Google Maps JavaScript API v3 instances
+* [Semantic UI React](https://react.semantic-ui.com/introduction) - the React integration for Semantic UI, a CSS and Javascript framework for styling
+* [Semantic UI React](https://react.semantic-ui.com/introduction)
+* [JSON Web Token (JWT)](https://jwt.io/) - a self-contained way for securely transmitting information between parties as a JSON object (for user authentication)
+* [Ruby on Rails](http://rubyonrails.org/) - a server-side web application framework (for backend API)
 
 ## Contributing
 
