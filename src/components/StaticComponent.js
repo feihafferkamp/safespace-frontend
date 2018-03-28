@@ -14,10 +14,12 @@ const StaticComponent = props => {
 				<p id="note">
 					<em>
 						Note: All location requests are for the sole purpose of placing your
-						stories on the map. We believe seeing posts by location can add a
-						sense of solidarity to the Safe Space community. If you choose to
-						block the geolocation prompt, however, we comepletely understand and
-						will simply stash your story in the Pacific Ocean. :){' '}
+						stories on the map, and we slightly obscure the exact location to
+						protect your privacy. We believe seeing posts by (approximate)
+						location can add a sense of solidarity to the Safe Space community.
+						If you choose to block the geolocation prompt, however, we
+						comepletely understand and will simply stash your story in the
+						Pacific Ocean. :)
 					</em>
 				</p>
 			</Segment>
