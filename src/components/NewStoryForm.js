@@ -6,7 +6,8 @@ import {
 	Button,
 	Segment,
 	Message,
-	Label
+	Label,
+	Icon
 } from 'semantic-ui-react';
 import '../stylesheets/static.css';
 
@@ -72,9 +73,13 @@ export default class NewStoryForm extends Component {
 		});
 	};
 
+	deleteTag = e => {
+		console.dir(e.target.parentNode)
+	}
+
 	render() {
 		const tagItems = this.state.tags.map(tag => {
-			return <Label key={tag.name}>{tag.name}</Label>;
+			return <Label key={tag.name}>{tag.name}<Icon onClick={this.deleteTag} name='delete'/></Label>;
 		});
 
 		return (
