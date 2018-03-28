@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Button, Container, Segment, Message } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import '../stylesheets/sessions.css';
 
 export default class LogInContainer extends React.Component {
@@ -38,7 +38,7 @@ export default class LogInContainer extends React.Component {
 							value={this.state.password}
 							onChange={this.handleChange}
 						/>
-						<Button color="primary" type="submit">
+					<Button primary type="submit">
 							Log In
 						</Button>
 					</Form>
@@ -51,9 +51,9 @@ export default class LogInContainer extends React.Component {
 						: null}
 					}}
 					<div className="centered-text">
-						<Link exact to="/signup">
+						<NavLink exact to="/signup">
 							or, Sign Up
-						</Link>
+						</NavLink>
 					</div>
 				</Segment>
 			</Container>

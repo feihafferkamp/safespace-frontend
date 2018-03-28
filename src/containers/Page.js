@@ -32,7 +32,7 @@ export default class Page extends Component {
 					Authorization: `Bearer ${localStorage.getItem('jwt')}`
 				}
 			};
-			fetch('https://safespace-backend.herokuapp.com/users', options)
+			fetch('http://localhost:3000/users', options)
 				.then(res => res.json())
 				.then(json => {
 					this.setState({
@@ -62,6 +62,7 @@ export default class Page extends Component {
 	};
 
 	loginUser = loginParams => {
+		console.log(loginParams)
 		let options = {
 			method: 'POST',
 			headers: {
@@ -70,9 +71,10 @@ export default class Page extends Component {
 			},
 			body: JSON.stringify(loginParams)
 		};
-		fetch('https://safespace-backend.herokuapp.com/auth', options)
+		fetch('http://localhost:3000/auth', options)
 			.then(res => res.json())
 			.then(json => {
+				console.log(json)
 				if (json.error) {
 					this.setState({
 						errors:'Username and/or password not found'
@@ -95,7 +97,7 @@ export default class Page extends Component {
 			},
 			body: JSON.stringify(signupParams)
 		};
-		fetch('https://safespace-backend.herokuapp.com/users', options)
+		fetch('http://localhost:3000/users', options)
 			.then(res => res.json())
 			.then(json => {
 				if(json.errors) {

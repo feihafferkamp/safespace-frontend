@@ -14,9 +14,6 @@ export default class ProfileContainer extends React.Component {
     this.fetchStories()
   }
 
-  componentDidUpdate = () => {
-    this.fetchStories()
-  }
 
   fetchStories = () => {
     if (this.props.user.id) {
@@ -29,7 +26,7 @@ export default class ProfileContainer extends React.Component {
           Authorization: `Bearer ${localStorage.getItem('jwt')}`
         }
       }
-      fetch("https://safespace-backend.herokuapp.com/stories?user_id="+id, options)
+      fetch("http://localhost:3000/stories?user_id="+id, options)
         .then((res) => res.json())
         .then((json) => {
           this.setState({
@@ -55,6 +52,7 @@ export default class ProfileContainer extends React.Component {
     this.setState({
       storyToEdit:''
     })
+    this.fetchStories()
   }
 
   render() {
