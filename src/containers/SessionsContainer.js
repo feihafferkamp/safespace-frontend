@@ -15,31 +15,17 @@ export default class SessionsContainer extends React.Component {
 		});
 	};
 
-	createUser = () => {
-		let options = {
-			method: 'POST',
-			headers: {
-				'content-type': 'application/json',
-				accept: 'application/json'
-			},
-			body: JSON.stringify(this.state)
-		};
-		fetch('http://localhost:3000/auth', options)
-			.then(res => res.json())
-			.then(json => {
-				localStorage.setItem('jwt', json.token);
-				this.setState({ user: json.user, isLoggedIn: true }, () => {
-					this.props.history.push('/stories');
-				});
-			});
-	};
+	handleSubmit = e => {
+		e.preventDefault()
+		this.props.createUser(this.state)
+	}
 
 	render() {
 		return (
 			<Container>
 				<h1>Sign Up</h1>
 				<Segment raised padded>
-					<Form onSubmit={this.createUser}>
+					<Form onSubmit={this.handleSubmit}>
 						<label>Username</label>
 						<Form.Input
 							name="username"
