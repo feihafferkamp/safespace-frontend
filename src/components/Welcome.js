@@ -11,17 +11,12 @@ export default class Welcome extends Component {
 					<Header>
 						<h1 id="welcome">Welcome to Safe Space</h1>
 						<Header.Subheader>
-							<h3>
-								Please
-								<Link to={'/login'}>
-									<Button className="custom-btns">Login</Button>
-								</Link>
-								or
-								<Link to={'/signup'}>
-									<Button className="custom-btns">Sign Up</Button>
-								</Link>
-								to start.
-							</h3>
+							<Link to={'/login'}>
+								<Button className="custom-btns">Login</Button>
+							</Link>
+							<Link to={'/signup'}>
+								<Button className="custom-btns">Sign Up</Button>
+							</Link>
 						</Header.Subheader>
 					</Header>
 				</div>
