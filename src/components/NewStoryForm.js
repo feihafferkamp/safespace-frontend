@@ -30,7 +30,7 @@ export default class NewStoryForm extends Component {
 	};
 
 	handleError = error => {
-		console.dir(error);
+		// set location to pacific ocean if user refuses geolocation request
 		this.setState({
 			location: '8.78,124.5'
 		});
@@ -85,7 +85,7 @@ export default class NewStoryForm extends Component {
 							name="content"
 							value={this.state.content}
 							onChange={this.handleChange}
-							placeholder="Write your story here..."
+							placeholder="Share your story here..."
 						/>
 					</Form.Field>
 				</Form>
@@ -94,6 +94,7 @@ export default class NewStoryForm extends Component {
 				</Segment>
 
 				<NewTagForm handleSubmit={this.addTag} tags={this.props.tags} />
+
 				{this.props.posted === false ? (
 					<Message
 						error

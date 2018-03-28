@@ -32,7 +32,6 @@ export default class Navbar extends Component {
 	];
 
 	render() {
-		console.log(this.props);
 		const { activeItem } = this.state;
 		const links = this.pages.map(page => {
 			return (

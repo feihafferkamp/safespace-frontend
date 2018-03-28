@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Input, Button } from 'semantic-ui-react';
+import '../stylesheets/form.css';
 
 class NewTagForm extends React.Component {
 	state = {
@@ -38,7 +39,9 @@ class NewTagForm extends React.Component {
 					onChange={this.handleChange}
 				/>
 				<datalist id="oldTags">{oldTags}</datalist>
-				<Button secondary type="submit">Add Tag</Button>
+				<Button className="addTag" type="submit">
+					Add Tag
+				</Button>
 			</Form>
 		);
 	}
