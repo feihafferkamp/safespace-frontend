@@ -1,6 +1,6 @@
 # Safe Space
 
-Safe Space is an anonymous social network platform for women worldwide to share their experiences, ask questions, and build community.
+Safe Space is an anonymous social network platform for women worldwide to share their experiences, ask questions, and build community. Upon signing up or logging in, a user can view existing stories through either a map, with each story pinned to the location at which it was published, or a feed, which showcases all stories at once. User has the option of commenting on those stories. Additionally, she could post a story of her own, adding relevant tags and choosing to accept or reject a location prompt. Accepting the prompt would pin the story to her location, which is slightly obscured to protect user privacy, while rejecting it would place the story in the middle of the Pacific Ocean.
 
 ## Installing
 
