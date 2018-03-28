@@ -3,6 +3,10 @@ import { Icon, Label, Segment } from 'semantic-ui-react';
 import CommentContainer from '../containers/CommentContainer';
 
 export default class StoryItem extends Component {
+
+	handleClick = () => {
+		this.props.iconClick(this.props.story)
+	}
 	render() {
 		const tags = this.props.story.tags.map(tag => {
 			return <Label key={tag.id}>{tag.name}</Label>;
@@ -10,6 +14,7 @@ export default class StoryItem extends Component {
 		return (
 			<div className="story-item">
 				<Segment piled>
+					{this.props.editable ? <Icon link onClick={this.handleClick} name='edit' /> : null}
 					<div>{this.props.story.content}</div>
 					<div>
 						<Icon name="user" />
