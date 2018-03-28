@@ -13,7 +13,7 @@ import bgVid from '../media/bgVid.mp4';
 
 export default class Page extends Component {
 	state = {
-		user: {},
+		user: null,
 		isLoggedIn: false
 	};
 
@@ -77,7 +77,6 @@ export default class Page extends Component {
 	};
 
 	createUser = signupParams => {
-		console.log(signupParams);
 		let options = {
 			method: 'POST',
 			headers: {
