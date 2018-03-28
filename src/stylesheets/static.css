@@ -32,7 +32,7 @@ li {
 	z-index: -1;
 }
 
-.contentContainer {
+.content-container {
 	text-align: center;
 	margin-top: 30%;
 }
@@ -40,7 +40,7 @@ li {
 .ui.button.custom-btns {
 	font-size: 1.5rem;
 	margin: 3rem;
-	margin-top: 10%;
+	margin-top: 20%;
 	padding: 0, 1.5rem;
 	border-radius: 1rem;
 }
