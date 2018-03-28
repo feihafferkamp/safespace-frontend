@@ -73,7 +73,6 @@ export default class Page extends Component {
 	};
 
 	render() {
-		// const NavbarWithAuth = withAuthentication(Navbar, this.state.user);
 		const NewWithAuth = withAuthentication(NewStoryContainer, this.state.user);
 		const StoriesWithAuth = withRouter(
 			withAuthentication(StoryContainer, this.state.user)

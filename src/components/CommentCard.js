@@ -1,18 +1,26 @@
-import React from 'react';
-import { Comment, Grid } from 'semantic-ui-react';
+import React, { Component } from 'react';
+import { Comment, Grid, Icon } from 'semantic-ui-react';
 import EditCommentForm from './EditCommentForm';
 import '../stylesheets/comment.css';
 
-class CommentCard extends React.Component {
+export default class CommentCard extends Component {
 	state = { editing: false };
 
 	editComment = () => {
 		this.setState({ editing: true });
 	};
 
+	handleCommentEdits = editedComment => {
+		this.setState({ editing: false });
+		this.props.patchComment(editedComment);
+	};
+
 	render() {
 		return this.state.editing ? (
-			<EditCommentForm comment={this.props.comment} />
+			<EditCommentForm
+				comment={this.props.comment}
+				onSubmit={this.handleCommentEdits}
+			/>
 		) : (
 			<Comment.Content className="comment-content">
 				<Grid column={2}>
@@ -21,9 +29,10 @@ class CommentCard extends React.Component {
 						<Grid.Column width={13}>
 							<Comment.Text>{this.props.comment.content}</Comment.Text>
 						</Grid.Column>
+						// only see if
 						<Grid.Column width={3}>
 							<a role="button" onClick={this.editComment}>
-								Edit
+								<Icon link name="edit" />
 							</a>
 						</Grid.Column>
 					</Grid.Row>
@@ -32,5 +41,3 @@ class CommentCard extends React.Component {
 		);
 	}
 }
-
-export default CommentCard;

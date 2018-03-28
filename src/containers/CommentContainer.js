@@ -21,7 +21,27 @@ export default class CommentContainer extends React.Component {
 			options
 		)
 			.then(res => res.json())
-			.then(json => this.addNewCommentToState(json));
+			.then(newCommentJson => this.addNewCommentToState(newCommentJson));
+	};
+
+	patchComment = editedComment => {
+		const options = {
+			method: 'PATCH',
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json',
+				Authorization: `Bearer ${localStorage.getItem('jwt')}`
+			},
+			body: JSON.stringify(editedComment)
+		};
+		fetch(
+			`http://localhost:3000/stories/${this.props.storyId}/comments/${
+				editedComment.id
+			}`,
+			options
+		)
+			.then(res => res.json())
+			.then(json => console.log(json));
 	};
 
 	addNewCommentToState = ({ id, content, created_at, username }) => {
@@ -36,7 +56,12 @@ export default class CommentContainer extends React.Component {
 
 	commentCards = () =>
 		this.state.comments.map(c => (
-			<CommentCard comment={c} key={c.id} handleShow={this.setShow} />
+			<CommentCard
+				comment={c}
+				key={c.id}
+				handleShow={this.setShow}
+				patchComment={this.patchComment}
+			/>
 		));
 
 	generateDisplay = () =>

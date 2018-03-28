@@ -13,8 +13,7 @@ export default class EditCommentForm extends Component {
 
 	handleCommentSubmit = e => {
 		e.preventDefault();
-		this.props.submitComment(this.state);
-		this.setState({ comment: { username: '', content: '' } });
+		this.props.onSubmit(this.state);
 	};
 
 	render() {
@@ -33,10 +32,7 @@ export default class EditCommentForm extends Component {
 						onChange={this.handleInputChange}
 					/>
 				</Form.Field>
-				<Button type="submit" content="Submit" />
-				<a role="button" onClick={this.props.handleClose}>
-					Close
-				</a>
+				<Button type="submit" content="Done" />
 			</Form>
 		);
 	}
