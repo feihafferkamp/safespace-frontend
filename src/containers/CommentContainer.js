@@ -4,7 +4,28 @@ import CommentCard from '../components/CommentCard';
 import NewCommentForm from '../components/NewCommentForm';
 
 export default class CommentContainer extends Component {
-	state = { comments: this.props.comments, open: false };
+	state = { comments: [], open: false };
+
+	componentDidMount() {
+		this.fetchComments();
+	}
+
+	fetchComments = () => {
+		const options = {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json',
+				Authorization: `Bearer ${localStorage.getItem('jwt')}`
+			}
+		};
+		fetch(
+			`http://localhost:3000/stories/${this.props.storyId}/comments`,
+			options
+		)
+			.then(res => res.json())
+			.then(comments => this.setState({ comments }));
+	};
 
 	postNewComment = newCommentInfo => {
 		const options = {
@@ -21,11 +42,10 @@ export default class CommentContainer extends Component {
 			options
 		)
 			.then(res => res.json())
-			.then(json => this.addNewCommentToState(json));
+			.then(newComJson => this.fetchComments());
 	};
 
 	patchComment = editedComment => {
-		debugger;
 		const options = {
 			method: 'PATCH',
 			headers: {
@@ -35,7 +55,6 @@ export default class CommentContainer extends Component {
 			},
 			body: JSON.stringify(editedComment)
 		};
-
 		fetch(
 			`http://localhost:3000/stories/${this.props.storyId}/comments/${
 				editedComment.comment.id
@@ -43,7 +62,7 @@ export default class CommentContainer extends Component {
 			options
 		)
 			.then(res => res.json())
-			.then(json => console.log(json));
+			.then(editedComJson => this.fetchComments());
 	};
 
 	addNewCommentToState = ({ id, content, created_at, username }) => {
