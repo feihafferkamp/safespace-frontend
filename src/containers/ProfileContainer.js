@@ -14,9 +14,6 @@ export default class ProfileContainer extends React.Component {
     this.fetchStories()
   }
 
-  componentDidUpdate = () => {
-    this.fetchStories()
-  }
 
   fetchStories = () => {
     if (this.props.user.id) {
@@ -55,6 +52,7 @@ export default class ProfileContainer extends React.Component {
     this.setState({
       storyToEdit:''
     })
+    this.fetchStories()
   }
 
   render() {

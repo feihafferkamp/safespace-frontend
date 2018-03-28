@@ -16,6 +16,11 @@ export default class EditStoryContainer extends React.Component {
   }
 
   patchStory = storyAttributes => {
+    let storyTagNames = this.props.story.tags.map(tag => tag.name)
+    let newSTs = storyAttributes.stories_tags_attributes.filter(st => {
+      return !storyTagNames.includes(st.tag_attributes.name)
+    })
+    storyAttributes.stories_tags_attributes = newSTs
 		let options = {
 			method: 'PATCH',
 			headers: {
