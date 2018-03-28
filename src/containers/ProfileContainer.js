@@ -26,7 +26,7 @@ export default class ProfileContainer extends React.Component {
           Authorization: `Bearer ${localStorage.getItem('jwt')}`
         }
       }
-      fetch("http://localhost:3000/stories?user_id="+id, options)
+      fetch("https://safespace-backend.herokuapp.com/stories?user_id="+id, options)
         .then((res) => res.json())
         .then((json) => {
           this.setState({

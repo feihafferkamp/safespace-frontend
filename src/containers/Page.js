@@ -32,7 +32,7 @@ export default class Page extends Component {
 					Authorization: `Bearer ${localStorage.getItem('jwt')}`
 				}
 			};
-			fetch('http://localhost:3000/users', options)
+			fetch('https://safespace-backend.herokuapp.com/users', options)
 				.then(res => res.json())
 				.then(json => {
 					this.setState({
@@ -71,7 +71,7 @@ export default class Page extends Component {
 			},
 			body: JSON.stringify(loginParams)
 		};
-		fetch('http://localhost:3000/auth', options)
+		fetch('https://safespace-backend.herokuapp.com/auth', options)
 			.then(res => res.json())
 			.then(json => {
 				console.log(json)
@@ -97,7 +97,7 @@ export default class Page extends Component {
 			},
 			body: JSON.stringify(signupParams)
 		};
-		fetch('http://localhost:3000/users', options)
+		fetch('https://safespace-backend.herokuapp.com/users', options)
 			.then(res => res.json())
 			.then(json => {
 				if(json.errors) {
