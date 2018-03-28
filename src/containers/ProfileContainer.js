@@ -11,6 +11,14 @@ export default class ProfileContainer extends React.Component {
   }
 
   componentDidMount() {
+    this.fetchStories()
+  }
+
+  componentDidUpdate = () => {
+    this.fetchStories()
+  }
+
+  fetchStories = () => {
     if (this.props.user.id) {
       const id = this.props.user.id
       let options = {
@@ -24,7 +32,6 @@ export default class ProfileContainer extends React.Component {
       fetch("http://localhost:3000/stories?user_id="+id, options)
         .then((res) => res.json())
         .then((json) => {
-          console.log(json)
           this.setState({
             myStories:json
           })
@@ -44,10 +51,16 @@ export default class ProfileContainer extends React.Component {
     })
   }
 
+  afterSubmit = () => {
+    this.setState({
+      storyToEdit:''
+    })
+  }
+
   render() {
     return(
       <div>
-        {this.state.storyToEdit ? <EditStoryContainer user={this.props.user} story={this.state.storyToEdit} /> : null}
+        {this.state.storyToEdit ? <EditStoryContainer user={this.props.user} story={this.state.storyToEdit} afterSubmit={this.afterSubmit}/> : null}
         <Grid columns={3} stackable>
           {this.state.myStories.length > 0 ? this.storyCards() : <p>No stories yet</p>}
         </Grid>
