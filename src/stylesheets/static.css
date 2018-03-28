@@ -38,15 +38,15 @@ li {
 }
 
 .ui.button.custom-btns {
-	font-size: 1.5rem;
+	font-size: 1.2rem;
 	margin: 3rem;
-	margin-top: 10%;
+	margin-top: 20%;
 	padding: 0, 1.5rem;
 	border-radius: 1rem;
 }
 
 #welcome {
-	font-size: 9rem;
+	font-size: 7rem;
 }
 
 .about div.ui.segment {
