@@ -11,18 +11,17 @@ const StaticComponent = props => {
 			<Segment raised padded basic>
 				Safe Space is an anonymous social network platform for women worldwide
 				to share their experiences, ask questions, and build community.
-				<p id="note">
-					<em>
-						Note: All location requests are for the sole purpose of placing your
-						stories on the map, and we slightly obscure the exact location to
-						protect your privacy. We believe seeing posts by (approximate)
-						location can add a sense of solidarity to the Safe Space community.
-						If you choose to block the geolocation prompt, however, we
-						comepletely understand and will simply stash your story in the
-						Pacific Ocean. :)
-					</em>
-				</p>
 			</Segment>
+			<p id="note">
+				<em>
+					Note: All location requests are for the sole purpose of placing your
+					stories on the map, and we slightly obscure the exact location to
+					protect your privacy. We believe seeing posts by (approximate)
+					location can add a sense of solidarity to the Safe Space community. If
+					you choose to block the geolocation prompt, however, we comepletely
+					understand and will simply stash your story in the Pacific Ocean. :)
+				</em>
+			</p>
 		</div>
 	);
 
