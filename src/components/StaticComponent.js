@@ -1,14 +1,16 @@
 import React from 'react';
-import { Container } from 'semantic-ui-react';
+import { Container, Segment } from 'semantic-ui-react';
 import '../stylesheets/static.css';
 
 const StaticComponent = props => {
 	const page = props.match.url.slice(1);
 
 	const about = (
-		<div className="static">
+		<div className="static about">
 			<h1>About</h1>
-			<p>This is a project.</p>
+			<Segment raised padded basic>
+				Safe Space is an anonymous social network platform for women worldwide to share their experiences, ask questions, and build community.
+			</Segment>
 		</div>
 	);
 
