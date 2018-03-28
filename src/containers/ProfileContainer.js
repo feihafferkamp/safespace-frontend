@@ -29,9 +29,13 @@ export default class ProfileContainer extends React.Component {
     }
   }
 
+  editStory = story => {
+    console.log(story)
+  }
+
   storyCards = () => {
     return this.state.myStories.map(story => {
-      return <StoryItem story={story} user={this.props.user} key={story.id} />
+      return <StoryItem editable={true} iconClick={this.editStory} story={story} user={this.props.user} key={story.id} />
     })
   }
 
