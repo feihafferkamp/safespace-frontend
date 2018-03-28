@@ -5,3 +5,19 @@
 a {
 	float: right;
 }
+
+.ui.comments .comment .author {
+	font-size: 0.8rem;
+	margin: 0;
+	line-height: 0.8;
+}
+
+.ui.comments .comment .text {
+	font-size: 0.8rem;
+	margin: 0;
+	line-height: 0.8;
+}
+
+i.icon.edit:before {
+	font-size: 0.8rem;
+}
