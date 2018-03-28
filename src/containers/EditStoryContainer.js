@@ -10,12 +10,17 @@ export default class EditStoryContainer extends React.Component {
   }
 
   componentDidMount = () => {
-    fetch('https://safespace-backend.herokuapp.com/tags')
+    fetch('http://localhost:3000/tags')
 			.then(res => res.json())
 			.then(tags => this.setState({ tags }));
   }
 
   patchStory = storyAttributes => {
+    let storyTagNames = this.props.story.tags.map(tag => tag.name)
+    let newSTs = storyAttributes.stories_tags_attributes.filter(st => {
+      return !storyTagNames.includes(st.tag_attributes.name)
+    })
+    storyAttributes.stories_tags_attributes = newSTs
 		let options = {
 			method: 'PATCH',
 			headers: {
@@ -25,7 +30,7 @@ export default class EditStoryContainer extends React.Component {
 			},
 			body: JSON.stringify({ story: storyAttributes })
 		};
-		fetch('https://safespace-backend.herokuapp.com/stories/'+this.props.story.id, options)
+		fetch('http://localhost:3000/stories/'+this.props.story.id, options)
 			.then(res => res.json())
 			.then(json => {
 				if (json.errors) {

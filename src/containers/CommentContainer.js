@@ -20,7 +20,7 @@ export default class CommentContainer extends Component {
 			}
 		};
 		fetch(
-			`https://safespace-backend.herokuapp.com/stories/${
+			`http://localhost:3000/stories/${
 				this.props.storyId
 			}/comments`,
 			options
@@ -40,7 +40,7 @@ export default class CommentContainer extends Component {
 			body: JSON.stringify(newCommentInfo)
 		};
 		fetch(
-			`https://safespace-backend.herokuapp.com/stories/${
+			`http://localhost:3000/stories/${
 				this.props.storyId
 			}/comments`,
 			options
@@ -62,7 +62,7 @@ export default class CommentContainer extends Component {
 			body: JSON.stringify(editedComment)
 		};
 		fetch(
-			`https://safespace-backend.herokuapp.com/stories/${
+			`http://localhost:3000/stories/${
 				this.props.storyId
 			}/comments/${editedComment.comment.id}`,
 			options
