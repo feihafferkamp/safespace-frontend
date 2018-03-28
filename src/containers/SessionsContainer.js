@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Button, Container, Segment } from 'semantic-ui-react';
+import { Form, Button, Container, Segment, Message } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import '../stylesheets/sessions.css';
 
@@ -43,6 +43,14 @@ export default class SessionsContainer extends React.Component {
 							Sign Up
 						</Button>
 					</Form>
+					{this.props.errors ?
+						<Message
+							error
+							header="Error"
+							content={this.props.errors}
+						/>
+						: null}
+					}}
 					<div className="centered-text">
 						<NavLink exact to="/login">
 							or, Login
