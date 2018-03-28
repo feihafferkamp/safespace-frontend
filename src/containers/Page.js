@@ -8,8 +8,8 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import SessionsContainer from './SessionsContainer';
 import LogInContainer from './LogInContainer';
 import withAuthentication from '../components/withAuthentication';
-import ProfileContainer from './ProfileContainer'
-import {bgVid} from '../media/bgVid.mp4'
+import ProfileContainer from './ProfileContainer';
+import bgVid from '../media/bgVid.mp4';
 
 export default class Page extends Component {
 	state = {
@@ -74,31 +74,36 @@ export default class Page extends Component {
 
 	render() {
 
-		const NavbarWithAuth = withAuthentication(Navbar, this.state.user)
-		const NewWithAuth = withAuthentication(NewStoryContainer, this.state.user)
-		const StoriesWithAuth = withRouter(withAuthentication(StoryContainer, this.state.user))
-		const ProfileWithAuth = withAuthentication(ProfileContainer)
-			return(
-				<div>
-					<video className="bgVid" autoPlay loop muted>
-						<source src={bgVid} type="video/mp4" />
-					</video>
-					<Navbar handleLogout={this.logout} user={this.state.user}/>
-						<Switch>
-							<Route path="/new-story" component={NewWithAuth} />
-							<Route path="/stories" component={StoriesWithAuth} />
-							<Route path='/signup' component={SessionsContainer} />
-							<Route path='/profile' render={() => <ProfileWithAuth user={this.state.user} />} />
-							<Route path='/login' render={() => <LogInContainer logInUser={this.loginUser} />} />
-							<Route path='/feed' render={() => <StoriesWithAuth type='feed'/>} />
-							<Route
-								path="/:slug"
-								render={renderProps => <StaticComponent {...renderProps} />}
-							/>
-							<Route path="/" component={Welcome} />
-						</Switch>
-				</div>
-			)
+		// const NavbarWithAuth = withAuthentication(Navbar, this.state.user);
+		const NewWithAuth = withAuthentication(NewStoryContainer, this.state.user);
+		const StoriesWithAuth = withRouter(
+			withAuthentication(StoryContainer, this.state.user)
+		);
+		const ProfileWithAuth = withAuthentication(ProfileContainer, this.state.user);
 
+		return (
+			<div>
+				<video className="bgVid" autoPlay loop muted>
+					<source src={bgVid} type="video/mp4" />
+				</video>
+				<Navbar handleLogout={this.logout} user={this.state.user} />
+				<Switch>
+					<Route path="/new-story" component={NewWithAuth} />
+					<Route path="/stories" component={StoriesWithAuth} />
+					<Route path="/signup" component={SessionsContainer} />
+					<Route path='/profile' render={() => <ProfileWithAuth user={this.state.user} />} />
+					<Route
+						path="/login"
+						render={() => <LogInContainer logInUser={this.loginUser} />}
+					/>
+					<Route path="/feed" render={() => <StoriesWithAuth type="feed" />} />
+					<Route
+						path="/:slug"
+						render={renderProps => <StaticComponent {...renderProps} />}
+					/>
+					<Route path="/" component={Welcome} />
+				</Switch>
+			</div>
+		);
 	}
 }
