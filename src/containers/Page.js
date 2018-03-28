@@ -73,6 +73,7 @@ export default class Page extends Component {
 	};
 
 	render() {
+		console.log(this.state);
 		const NewWithAuth = withAuthentication(NewStoryContainer, this.state.user);
 		const StoriesWithAuth = withRouter(
 			withAuthentication(StoryContainer, this.state.user)
