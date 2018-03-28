@@ -18,6 +18,10 @@ export default class Page extends Component {
 	};
 
 	componentDidMount() {
+		this.getUser();
+	}
+
+	getUser = () => {
 		if (localStorage.getItem('jwt')) {
 			let options = {
 				method: 'GET',
@@ -38,7 +42,7 @@ export default class Page extends Component {
 		} else {
 			console.log('You are not logged in');
 		}
-	}
+	};
 
 	logout = () => {
 		localStorage.removeItem('jwt');
@@ -72,6 +76,26 @@ export default class Page extends Component {
 			});
 	};
 
+	createUser = signupParams => {
+		console.log(signupParams);
+		let options = {
+			method: 'POST',
+			headers: {
+				'content-type': 'application/json',
+				accept: 'application/json'
+			},
+			body: JSON.stringify(signupParams)
+		};
+		fetch('http://localhost:3000/users', options)
+			.then(res => res.json())
+			.then(json => {
+				localStorage.setItem('jwt', json.token);
+				this.setState({ user: json.user, isLoggedIn: true }, () => {
+					this.props.history.push('/stories');
+				});
+			});
+	};
+
 	render() {
 		const NewWithAuth = withAuthentication(NewStoryContainer, this.state.user);
 		const StoriesWithAuth = withRouter(
@@ -91,7 +115,10 @@ export default class Page extends Component {
 				<Switch>
 					<Route path="/new-story" component={NewWithAuth} />
 					<Route path="/stories" component={StoriesWithAuth} />
-					<Route path="/signup" component={SessionsContainer} />
+					<Route
+						path="/signup"
+						render={() => <SessionsContainer createUser={this.createUser} />}
+					/>
 					<Route
 						path="/profile"
 						render={() => <ProfileWithAuth user={this.state.user} />}

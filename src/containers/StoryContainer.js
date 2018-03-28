@@ -14,7 +14,6 @@ export default class StoryContainer extends Component {
 	};
 
 	render() {
-		console.log(this.props.user);
 		return (
 			<div>
 				{this.props.type === 'feed' ? (

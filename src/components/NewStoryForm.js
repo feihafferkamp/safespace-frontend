@@ -20,14 +20,22 @@ export default class NewStoryForm extends Component {
 	};
 
 	componentDidMount = () => {
+		if(this.props.story) {
+			this.setState({
+				tags:this.props.story.tags,
+				content:this.props.story.content,
+				location:this.props.story.location
+			})
+		} else {
+			navigator.geolocation.getCurrentPosition(
+				this.getLocation,
+				this.handleError,
+				options
+			);
+		}
 		let options = {
 			timeout: 5000
 		};
-		navigator.geolocation.getCurrentPosition(
-			this.getLocation,
-			this.handleError,
-			options
-		);
 	};
 
 	handleError = error => {
