@@ -13,7 +13,7 @@ import bgVid from '../media/bgVid.mp4';
 
 export default class Page extends Component {
 	state = {
-		user: {},
+		user: '',
 		isLoggedIn: false
 	};
 
@@ -105,7 +105,7 @@ export default class Page extends Component {
 		const StoriesWithAuth = withRouter(
 			withAuthentication(StoryContainer, this.state.user)
 		);
-		const ProfileWithAuth = withAuthentication(ProfileContainer, this.state.user);
+		const ProfileWithAuth = withRouter(withAuthentication(ProfileContainer, this.state.user));
 
 		return (
 			<div>

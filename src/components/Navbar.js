@@ -58,6 +58,7 @@ export default class Navbar extends Component {
 			</Menu.Item>
 		);
 		return (
+
 			<Menu size="large" className="secondary">
 				{links}
 				<Dropdown text="Stories" pointing className="link item my-nav-items">
