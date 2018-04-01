@@ -20,7 +20,7 @@ yarn start
 
 ## Built With
 
-* [React.js](https://reactjs.org/) - a JavaScript library for building user interfaces
+* [React.js](https://reactjs.org/) - a JavaScript library for building user interfaces in reusable components
 * [React Google Maps](https://tomchentw.github.io/react-google-maps/) - a set of React components wrapped around Google Maps JavaScript API v3 instances
 * [Semantic UI React](https://react.semantic-ui.com/introduction) - the React integration for Semantic UI, a CSS and Javascript framework for styling
 * [Semantic UI React](https://react.semantic-ui.com/introduction)
