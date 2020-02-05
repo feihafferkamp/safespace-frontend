@@ -53,5 +53,5 @@ git push origin my-new-feature
 
 ## Authors
 
-* Fei - [Github Profile](https://github.com/feihafferkamp)
+* Fei - [Github Profile](https://github.com/f3igao)
 * Katy - [Github Profile](https://github.com/katycarr)
